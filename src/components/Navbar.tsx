@@ -29,8 +29,7 @@ export default function Navbar() {
         { name: 'Testimonials', href: '/testimonials' },
         { name: 'About', href: '/about' },
         { name: 'Videos', href: '/videos' },
-        { name: 'Business', href: '/business' },
-        { name: 'Household', href: '/household' },
+        { name: 'For You', href: '/for-you' },
         { name: 'Sitemap', href: '/sitemap' },
         { name: 'Contact', href: '/contact' },
     ];

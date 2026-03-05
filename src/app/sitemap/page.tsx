@@ -14,8 +14,7 @@ export default function SitemapPage() {
         { name: 'Contact', href: '/contact' },
         { name: 'About Us', href: '/about' },
         { name: 'Videos', href: '/videos' },
-        { name: 'Commercial Clients', href: '/business' },
-        { name: 'Domestic Clients', href: '/household' },
+        { name: 'For You', href: '/for-you' },
     ];
 
     return (
