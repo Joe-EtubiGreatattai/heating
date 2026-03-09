@@ -64,7 +64,7 @@ export default function ForYouPage() {
                     </div>
                     <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1.5rem', borderRadius: '12px' }}>
                         <p style={{ marginBottom: '0.5rem' }}><strong>Domestic Rate:</strong> £80/Service</p>
-                        <p style={{ marginBottom: '0.5rem' }}><strong>Commercial Rate:</strong> £70/Hour (2hr min)</p>
+                        <p style={{ marginBottom: '0.5rem' }}><strong>Commercial Rate:</strong> £140/Hour</p>
                         <p><strong>Emergency Callout:</strong> £150 (First hour)</p>
                     </div>
                 </div>

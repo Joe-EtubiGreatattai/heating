@@ -6,16 +6,20 @@ import Testimonials from '@/components/Testimonials';
 import VideoSection from '@/components/VideoSection';
 import EmergencyCTA from '@/components/EmergencyCTA';
 import ContactForm from '@/components/ContactForm';
+import FAQ from '@/components/FAQ';
+import Segments from '@/components/Segments';
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <Segments />
       <TrustBar />
       <Services />
       <Pricing />
       <Testimonials />
       <VideoSection />
+      <FAQ />
       <EmergencyCTA />
       <ContactForm />
     </>

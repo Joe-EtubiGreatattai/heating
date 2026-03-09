@@ -14,8 +14,7 @@ export default function Services() {
                     <div className="service-card">
                         <div className="service-icon">🔥</div>
                         <h3>Boiler Installation</h3>
-                        <p>Expert installation of Vaillant, Glow-worm, Worcester Bosch and other leading brands. New
-                            installs from £1,000 labour. 10-year warranties available.</p>
+                        <p>Expert installation of Vaillant, Glow-worm, Worcester Bosch and other leading brands. 10-year warranties available.</p>
                         <Link href="/contact" className="service-link">Get Quote →</Link>
                     </div>
 
@@ -30,7 +29,7 @@ export default function Services() {
                     <div className="service-card">
                         <div className="service-icon">⚡</div>
                         <h3>Emergency Repairs</h3>
-                        <p>24/7 emergency callout service for boiler breakdowns. Fast response times. We diagnose and fix
+                        <p>Emergency callout service for boiler breakdowns. Fast response times. We diagnose and fix
                             problems quickly to get your heating back on.</p>
                         <a href="tel:02046008746" className="service-link">Call Now →</a>
                     </div>
@@ -51,13 +50,7 @@ export default function Services() {
                         <Link href="/contact" className="service-link">Get Quote →</Link>
                     </div>
 
-                    <div className="service-card">
-                        <div className="service-icon">🛁</div>
-                        <h3>Bathroom Installation</h3>
-                        <p>Complete bathroom refurbishments. Beautiful bathrooms, expertly installed. Plumbing, tiling,
-                            fixtures and fittings all handled.</p>
-                        <Link href="/contact" className="service-link">View Projects →</Link>
-                    </div>
+
                 </div>
             </div>
         </section>

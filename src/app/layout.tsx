@@ -30,7 +30,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               "name": "Direct Heating Ltd",
-              "image": "https://directheatingltd.com/logo.png",
+              "image": "https://directheatingltd.com/Direct Heating logo alternate.JPG",
               "telephone": "0204 600 8746",
               "email": "info@directheatingltd.com",
               "address": {

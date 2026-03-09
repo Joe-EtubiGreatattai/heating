@@ -6,8 +6,8 @@ export default function Hero() {
             <div className="hero-container">
                 <div className="hero-content">
                     <h1>Gas Safe Heating Engineers <span>You Can Trust</span></h1>
-                    <p className="hero-subtitle">Professional boiler installation, servicing & repairs across North London. 24/7
-                        emergency callouts available. Domestic & commercial heating solutions.</p>
+                    <p className="hero-subtitle">Professional boiler installation, servicing & repairs across North London.
+                        Emergency callouts available. Domestic & commercial heating solutions.</p>
 
                     <div className="hero-badges">
                         <div className="badge">
@@ -16,7 +16,7 @@ export default function Hero() {
                         </div>
                         <div className="badge">
                             <div className="badge-icon">⚡</div>
-                            <div className="badge-text">24/7 <strong>Emergency</strong></div>
+                            <div className="badge-text"><strong>Emergency</strong> Callouts</div>
                         </div>
                         <div className="badge">
                             <div className="badge-icon">★</div>

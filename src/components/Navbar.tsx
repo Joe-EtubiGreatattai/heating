@@ -30,7 +30,6 @@ export default function Navbar() {
         { name: 'About', href: '/about' },
         { name: 'Videos', href: '/videos' },
         { name: 'For You', href: '/for-you' },
-        { name: 'Sitemap', href: '/sitemap' },
         { name: 'Contact', href: '/contact' },
     ];
 
@@ -38,10 +37,14 @@ export default function Navbar() {
         <nav className="navbar" style={isNavbarScrolled ? { boxShadow: '0 2px 20px rgba(0,0,0,0.1)' } : { boxShadow: 'none' }}>
             <div className="nav-container">
                 <Link href="/" className="logo">
-                    <div className="logo-icon">DH</div>
-                    <div className="logo-text">DIRECT <span>HEATING</span></div>
+                    <img src="/Direct Heating logo White.JPG" alt="Direct Heating Ltd" className="logo-img" />
                 </Link>
                 <ul className={`nav-links ${isMobileMenuOpen ? 'mobile-active' : ''}`} style={isMobileMenuOpen ? { display: 'flex', flexDirection: 'column', position: 'absolute', top: '100%', left: 0, width: '100%', background: 'rgba(26, 26, 26, 0.98)', padding: '2rem' } : {}}>
+                    {isMobileMenuOpen && (
+                        <Link href="/" className="logo" style={{ marginBottom: '1rem' }} onClick={() => setIsMobileMenuOpen(false)}>
+                            <img src="/Direct Heating logo White.JPG" alt="Direct Heating Ltd" className="logo-img" />
+                        </Link>
+                    )}
                     {navLinks.map((link) => (
                         <li key={link.href}>
                             <Link

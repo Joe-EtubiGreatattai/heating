@@ -7,8 +7,7 @@ export default function Footer() {
                 <div className="footer-grid">
                     <div className="footer-brand">
                         <Link href="/" className="logo" style={{ marginBottom: '1rem' }}>
-                            <div className="logo-icon">DH</div>
-                            <div className="logo-text">DIRECT <span>HEATING</span></div>
+                            <img src="/Direct Heating logo White.JPG" alt="Direct Heating Ltd" className="logo-img" />
                         </Link>
                         <p>Professional Gas Safe heating engineers serving North London. Boiler installation, servicing,
                             repairs and emergency callouts. Quality work, reliable service, competitive prices.</p>
@@ -63,9 +62,8 @@ export default function Footer() {
                             <strong style={{ color: 'var(--accent)', display: 'block' }}>Gas Safe Registered</strong>
                             <small style={{ color: 'rgba(255,255,255,0.7)' }}>Engineer #[Number]</small>
                         </div>
-                        <div
-                            style={{ width: '60px', height: '60px', background: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', color: '#c8102e', fontSize: '0.7rem', textAlign: 'center', lineHeight: '1.2' }}>
-                            GAS<br />SAFE<br />✓
+                        <div style={{ width: '60px', height: '60px', background: 'white', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                            <img src="/Gas Safe.jpg" alt="Gas Safe Registered" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                         </div>
                     </div>
                 </div>
