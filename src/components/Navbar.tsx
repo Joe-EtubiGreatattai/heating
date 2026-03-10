@@ -39,7 +39,7 @@ export default function Navbar() {
         const observer = new IntersectionObserver(observerCallback, observerOptions);
 
         // Sections to observe
-        const sections = ['home', 'domestic-segment', 'commercial-segment', 'pricing', 'contact'];
+        const sections = ['home', 'services', 'pricing', 'household', 'business', 'testimonials', 'contact'];
         sections.forEach(id => {
             const el = document.getElementById(id);
             if (el) observer.observe(el);
@@ -53,24 +53,22 @@ export default function Navbar() {
 
     const navLinks = [
         { name: 'Home', href: '/', id: 'home' },
-        { name: 'Pricing', href: '/#pricing', id: 'pricing' },
-        { name: 'Household', href: '/#who-we-serve', id: 'domestic-segment' },
-        { name: 'Business', href: '/#who-we-serve', id: 'commercial-segment' },
+        { name: 'Services', href: '/services', id: 'services' },
+        { name: 'Pricing', href: '/pricing', id: 'pricing' },
+        { name: 'Household', href: '/household', id: 'household' },
+        { name: 'Business', href: '/business', id: 'business' },
+        { name: 'Reviews', href: '/testimonials', id: 'testimonials' },
         { name: 'Contact Us', href: '/contact', id: 'contact' },
     ];
 
     const isLinkActive = (link: any) => {
-        // Special case for Contact Us since it's a separate page
-        if (link.href === '/contact') {
-            return pathname === '/contact';
-        }
-
-        // For homepage sections
+        // On the homepage, links are active based on the scrolled section
         if (pathname === '/') {
             return activeSection === link.id;
         }
 
-        return false;
+        // On standalone pages, links are active if the URL matches
+        return pathname === link.href;
     };
 
     return (

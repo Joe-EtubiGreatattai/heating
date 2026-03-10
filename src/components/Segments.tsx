@@ -10,7 +10,7 @@ export default function Segments() {
                 </div>
 
                 <div className="segments-grid">
-                    <div className="segment-card" id="domestic-segment">
+                    <Link href="/household" className="segment-card" id="domestic-segment" style={{ textDecoration: 'none', color: 'inherit' }}>
                         <div className="segment-header">
                             <div className="segment-icon">🏠</div>
                             <div>
@@ -23,15 +23,15 @@ export default function Segments() {
                             <li>Annual servicing & Gas Safety Checks</li>
                             <li>Emergency breakdown repairs</li>
                             <li>Central heating upgrades</li>
-                            <li>Competitive £120/hour rate</li>
+                            <li>Competitive £80/service rate</li>
                             <li>Same-day/next-day availability</li>
                         </ul>
-                        <Link href="/contact" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
-                            Get Home Quote
-                        </Link>
-                    </div>
+                        <div className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+                            Learn More
+                        </div>
+                    </Link>
 
-                    <div className="segment-card" id="commercial-segment">
+                    <Link href="/business" className="segment-card" id="commercial-segment" style={{ textDecoration: 'none', color: 'inherit' }}>
                         <div className="segment-header">
                             <div className="segment-icon">🏢</div>
                             <div>
@@ -43,16 +43,16 @@ export default function Segments() {
                             <li>Commercial boiler installations</li>
                             <li>Large-scale heating systems</li>
                             <li>Regular maintenance contracts</li>
-                            <li>Site-specific solutions (e.g., Wembley Arena)</li>
+                            <li>Site-specific solutions</li>
                             <li>£140/hour + travel</li>
                             <li>Priority response times</li>
                         </ul>
-                        <Link href="/contact" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
-                            Commercial Enquiry
-                        </Link>
-                    </div>
+                        <div className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+                            View Solutions
+                        </div>
+                    </Link>
 
-                    <div className="segment-card">
+                    <Link href="/contact" className="segment-card" style={{ textDecoration: 'none', color: 'inherit' }}>
                         <div className="segment-header">
                             <div className="segment-icon">🔑</div>
                             <div>
@@ -65,14 +65,15 @@ export default function Segments() {
                             <li>Multiple property management</li>
                             <li>Gas Safety Certificates (CP12)</li>
                             <li>Tenant liaison & access coordination</li>
-                            <li>competitive rates</li>
+                            <li>Competitive rates</li>
                             <li>Detailed reporting & invoicing</li>
                         </ul>
-                        <Link href="/contact" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+                        <div className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
                             Partner With Us
-                        </Link>
-                    </div>
+                        </div>
+                    </Link>
                 </div>
+
 
             </div>
         </section>

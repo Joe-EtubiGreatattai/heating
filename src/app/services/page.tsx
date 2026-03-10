@@ -9,10 +9,10 @@ export const metadata = {
 
 export default function ServicesPage() {
     return (
-        <>
+        <div style={{ paddingTop: '6rem' }}>
             <Services />
             <EmergencyCTA />
             <ContactForm />
-        </>
+        </div>
     );
 }

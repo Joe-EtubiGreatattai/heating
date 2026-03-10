@@ -34,10 +34,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.5,
         },
         {
-            url: `${baseUrl}/for-you`,
+            url: `${baseUrl}/household`,
             lastModified: new Date(),
             changeFrequency: 'monthly',
-            priority: 0.6,
+            priority: 0.7,
+        },
+        {
+            url: `${baseUrl}/business`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.7,
         },
         {
             url: `${baseUrl}/testimonials`,

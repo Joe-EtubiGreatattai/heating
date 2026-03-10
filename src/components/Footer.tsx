@@ -36,9 +36,9 @@ export default function Footer() {
                     <div className="footer-links">
                         <h4>For Customers</h4>
                         <ul>
-                            <li><Link href="/for-you">Domestic Clients</Link></li>
-                            <li><Link href="/for-you">Commercial</Link></li>
-                            <li><Link href="/for-you">Property Management</Link></li>
+                            <li><Link href="/household">Domestic Clients</Link></li>
+                            <li><Link href="/business">Commercial</Link></li>
+                            <li><Link href="/household">Property Management</Link></li>
                             <li><Link href="/pricing">Pricing</Link></li>
                             <li><Link href="/testimonials">Reviews</Link></li>
                         </ul>

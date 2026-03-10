@@ -8,9 +8,9 @@ export const metadata = {
 
 export default function PricingPage() {
     return (
-        <>
+        <div style={{ paddingTop: '6rem' }}>
             <Pricing />
             <EmergencyCTA />
-        </>
+        </div>
     );
 }
