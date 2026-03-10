@@ -26,7 +26,7 @@ export default function TrustBar() {
                 <div className="trust-item">
                     <span style={{ fontSize: '2rem' }}>⚡</span>
                     <div>
-                        <strong>24/7 Response</strong>
+                        <strong>Rapid Response</strong>
                         <small style={{ display: 'block', color: 'var(--text-gray)' }}>Emergency Callouts</small>
                     </div>
                 </div>

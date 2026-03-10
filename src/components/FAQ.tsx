@@ -4,24 +4,36 @@ import { useState } from 'react';
 
 const faqs = [
     {
-        question: "What areas in North London do you cover?",
-        answer: "We cover all of North London and surrounding areas, including Islington, Camden, Barnet, Haringey, and Enfield. If you're unsure if we cover your location, feel free to give us a call."
+        question: "Why do I need to service my boiler?",
+        answer: "You should have your boiler serviced annually. Not only will this ensure it&apos;s running efficiently and safely for the year ahead, but it will also validate any manufacturer&apos;s warranties you have on the appliance. Regular maintenance minimises the risk of costly breakdown and helps lengthen the lifespan of your boiler too."
     },
     {
-        question: "Are your engineers Gas Safe registered?",
-        answer: "Yes, absolutely. All our heating engineers are fully Gas Safe registered (formerly CORGI). We take safety extremely seriously and always carry our ID cards for your peace of mind."
+        question: "Does my Boiler need replacing?",
+        answer: "Most boilers should last for 10+ years, depending on how well the boiler and system were installed and maintained. If your boiler is becoming unreliable and is frequently causing you problems then it may be time to upgrade to a new high efficiency boiler."
     },
     {
-        question: "Do you offer emergency callout services?",
-        answer: "Yes, we provide emergency callout services for boiler breakdowns and urgent repairs. While we've updated our 24/7 availability, we still prioritize urgent issues to get your heating and hot water back on as quickly as possible."
+        question: "What is a Combi Boiler?",
+        answer: "A combi boiler delivers both heating and hot water without the need for a separate storage tank. It&apos;s an ideal choice for homes with limited space and can help reduce energy costs by heating water only when it&apos;s needed, rather than warming an entire tank that may not be fully used."
     },
     {
-        question: "How can I get a quote for a new boiler installation?",
-        answer: "We offer free, no-obligation quotes for all new boiler installations. You can contact us via our website form, or call us to arrange a site survey where we can provide a fixed-price quote tailored to your home."
+        question: "What areas do we cover?",
+        answer: "We cover London, Essex and Hertfordshire."
     },
     {
-        question: "What warranties come with a new boiler installation?",
-        answer: "As accredited installers for leading brands like Vaillant and Worcester Bosch, we can offer extended warranties of up to 10 or 12 years on new installations, giving you long-term peace of mind."
+        question: "How quickly can we attend to a call-out?",
+        answer: "We aim to attend on the same day whenever possible, depending on the time you contact us and our current schedule. If the same-day attendance isn&apos;t available, we will book you in for the next available appointment. Emergency call-outs will be prioritised where possible."
+    },
+    {
+        question: "Are we Gas Safe Registered?",
+        answer: "All our engineers are Gas Safe Registered, ensuring all work is carried out safely."
+    },
+    {
+        question: "How long does a boiler installation take?",
+        answer: "Most standard boiler installations can be completed within one day, although more complex systems can take longer."
+    },
+    {
+        question: "What payment methods do you accept?",
+        answer: "We accept various payment methods, including bank transfers and card payments."
     }
 ];
 
@@ -37,7 +49,7 @@ export default function FAQ() {
             <div className="container">
                 <div className="section-header">
                     <h2>Frequently Asked Questions</h2>
-                    <p>Got a question? We've got answers. Here are some of the most common queries from our customers.</p>
+                    <p>Got a question? We&apos;ve got answers. Here are some of the most common queries from our customers.</p>
                 </div>
 
                 <div className="faq-grid">

@@ -1,9 +1,9 @@
 'use client';
 
+import { useState } from 'react';
+
 export default function VideoSection() {
-    const playVideo = () => {
-        alert('Video player would open here. Embed your MP4 or YouTube video.');
-    };
+    const [isPlaying, setIsPlaying] = useState(false);
 
     return (
         <section className="video-section">
@@ -15,9 +15,26 @@ export default function VideoSection() {
                 </div>
 
                 <div className="video-container">
-                    <div className="video-placeholder" onClick={playVideo}>
-                        <div className="play-button">▶</div>
-                    </div>
+                    {!isPlaying ? (
+                        <div className="video-placeholder" onClick={() => setIsPlaying(true)}>
+                            <div className="play-button">▶</div>
+                        </div>
+                    ) : (
+                        <video
+                            className="active-video"
+                            src="/3dcac2a6-1b34-4cf5-9098-d7f932c27811.MP4"
+                            controls
+                            autoPlay
+                            style={{
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover'
+                            }}
+                        />
+                    )}
                 </div>
 
                 <p style={{ marginTop: '2rem', opacity: 0.8 }}>Full boiler installation timelapse - From removal to

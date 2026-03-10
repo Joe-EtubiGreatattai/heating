@@ -18,7 +18,7 @@ export default function ContactForm() {
                 <div className="contact-grid">
                     <div className="contact-info">
                         <h3>Contact Direct Heating</h3>
-                        <p style={{ color: 'var(--text-gray)', marginBottom: '2rem' }}>We're here to help with all your heating
+                        <p style={{ color: 'var(--text-gray)', marginBottom: '2rem' }}>We&apos;re here to help with all your heating
                             and plumbing needs. Reach out via phone, email, or fill out the form.</p>
 
                         <div className="contact-methods">
@@ -26,7 +26,7 @@ export default function ContactForm() {
                                 <div className="contact-icon">📞</div>
                                 <div>
                                     <strong>0204 600 8746</strong>
-                                    <span>Mon-Sun, 24/7 Emergency</span>
+                                    <span>Mon-Sun, Emergency Callouts</span>
                                 </div>
                             </a>
 
@@ -51,7 +51,7 @@ export default function ContactForm() {
                             <h4 style={{ marginBottom: '1rem' }}>Why Choose Us?</h4>
                             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                                 <li>✓ Gas Safe Registered Engineers</li>
-                                <li>✓ 24/7 Emergency Callouts</li>
+                                <li>✓ Emergency Callouts</li>
                                 <li>✓ Fixed Price Quotes</li>
                                 <li>✓ 10-Year Warranties Available</li>
                                 <li>✓ Fully Insured</li>

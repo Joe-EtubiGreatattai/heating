@@ -2,8 +2,8 @@ import Testimonials from '@/components/Testimonials';
 import EmergencyCTA from '@/components/EmergencyCTA';
 
 export const metadata = {
-    title: "Customer Reviews | Direct Heating Ltd",
-    description: "What our customers in North London say about our professional heating and plumbing services.",
+    title: "North London Customer Reviews | Direct Heating Ltd",
+    description: "Read why our customers rate us 5-stars for boiler installations and heating repairs in North London. Real experiences from local clients.",
 };
 
 export default function TestimonialsPage() {

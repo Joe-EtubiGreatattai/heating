@@ -1,5 +1,4 @@
 import Hero from '@/components/Hero';
-import TrustBar from '@/components/TrustBar';
 import Services from '@/components/Services';
 import Pricing from '@/components/Pricing';
 import Testimonials from '@/components/Testimonials';
@@ -14,13 +13,12 @@ export default function Home() {
     <>
       <Hero />
       <Segments />
-      <TrustBar />
       <Services />
+      <EmergencyCTA />
       <Pricing />
       <Testimonials />
       <VideoSection />
       <FAQ />
-      <EmergencyCTA />
       <ContactForm />
     </>
   );

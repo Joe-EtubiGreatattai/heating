@@ -3,8 +3,8 @@ import TrustBar from '@/components/TrustBar';
 import Services from '@/components/Services';
 
 export const metadata = {
-    title: "Heating & Plumbing Solutions for You | Direct Heating Ltd",
-    description: "Comprehensive heating and plumbing services for homeowners, landlords, and businesses in North London.",
+    title: "Domestic & Commercial Heating Solutions North London",
+    description: "Professional heating and plumbing services tailored for homeowners, landlords, and commercial businesses across North London.",
 };
 
 export default function ForYouPage() {
@@ -12,7 +12,7 @@ export default function ForYouPage() {
         <div className="container" style={{ paddingTop: '8rem', paddingBottom: '4rem' }}>
             <div className="section-header">
                 <h1>Professional Heating Solutions</h1>
-                <p>Whether it's your home or your business, we've got your heating needs covered across North London.</p>
+                <p>Whether it&apos;s your home or your business, we&apos;ve got your heating needs covered across North London.</p>
             </div>
 
             {/* Segment Selection */}
@@ -35,7 +35,7 @@ export default function ForYouPage() {
                         <span style={{ fontSize: '2.5rem' }}>🏢</span>
                         <h3>For Businesses</h3>
                     </div>
-                    <p>Professional heating and plumbing for North London's commercial properties, from offices to warehouses.</p>
+                    <p>Professional heating and plumbing for North London&apos;s commercial properties, from offices to warehouses.</p>
                     <ul className="segment-features" style={{ marginTop: '1.5rem', color: 'rgba(255,255,255,0.8)' }}>
                         <li style={{ color: 'rgba(255,255,255,0.8)' }}>Commercial Gas Safety</li>
                         <li style={{ color: 'rgba(255,255,255,0.8)' }}>Maintenance Contracts</li>

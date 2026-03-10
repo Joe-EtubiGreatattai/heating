@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function Hero() {
     return (
-        <section className="hero">
+        <section className="hero" id="home">
             <div className="hero-container">
                 <div className="hero-content">
                     <h1>Gas Safe Heating Engineers <span>You Can Trust</span></h1>
@@ -36,7 +36,7 @@ export default function Hero() {
                     </div>
                     <div className="floating-card review">
                         <div className="stars">★★★★★</div>
-                        <p>"Excellent service from start to finish. Completed to a very high standard."</p>
+                        <p>&ldquo;Excellent service from start to finish. Completed to a very high standard.&rdquo;</p>
                         <small>- Lucy Perry</small>
                     </div>
                     <div className="floating-card stats">

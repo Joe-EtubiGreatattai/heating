@@ -1,4 +1,3 @@
-import Hero from '@/components/Hero';
 import TrustBar from '@/components/TrustBar';
 
 export const metadata = {
@@ -15,7 +14,7 @@ export default function AboutPage() {
             </div>
             <div style={{ maxWidth: '800px', margin: '0 auto', lineHeight: '1.8', color: 'var(--text-gray)' }}>
                 <p>At Direct Heating Ltd, we pride ourselves on providing high-quality, reliable heating and plumbing services to homeowners, businesses, and property managers across North London.</p>
-                <p>Our team of Gas Safe registered engineers is dedicated to ensuring your safety and comfort. Whether it's a routine boiler service, a complex commercial installation, or an emergency 2am callout, we bring the same level of professionalism and expertise to every job.</p>
+                <p>Our team of Gas Safe registered engineers is dedicated to ensuring your safety and comfort. Whether it&apos;s a routine boiler service, a complex commercial installation, or an emergency 2am callout, we bring the same level of professionalism and expertise to every job.</p>
                 <h3 style={{ color: 'white', marginTop: '2rem', marginBottom: '1rem' }}>Our Values</h3>
                 <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                     <li><strong>Quality:</strong> We use only the best materials and follow industry best practices.</li>

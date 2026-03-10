@@ -6,11 +6,11 @@ export default function Segments() {
             <div className="container">
                 <div className="section-header">
                     <h2>Who We Serve</h2>
-                    <p>Specialized heating solutions tailored for every type of customer. We understand different needs require different approaches.</p>
+                    <p>Specialised heating solutions tailored for every type of customer. We understand different needs require different approaches.</p>
                 </div>
 
                 <div className="segments-grid">
-                    <div className="segment-card">
+                    <div className="segment-card" id="domestic-segment">
                         <div className="segment-header">
                             <div className="segment-icon">🏠</div>
                             <div>
@@ -31,7 +31,7 @@ export default function Segments() {
                         </Link>
                     </div>
 
-                    <div className="segment-card">
+                    <div className="segment-card" id="commercial-segment">
                         <div className="segment-header">
                             <div className="segment-icon">🏢</div>
                             <div>

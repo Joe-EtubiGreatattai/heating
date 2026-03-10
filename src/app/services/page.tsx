@@ -3,8 +3,8 @@ import EmergencyCTA from '@/components/EmergencyCTA';
 import ContactForm from '@/components/ContactForm';
 
 export const metadata = {
-    title: "Boiler Services & Plumbing | Direct Heating Ltd",
-    description: "Expert boiler installation, servicing, and repairs across North London. Domestic and commercial heating solutions.",
+    title: "Expert Boiler Installation & Servicing North London",
+    description: "Gas Safe registered heating engineers for high-efficiency boiler installations, annual servicing, and 24/7 emergency repairs across North London.",
 };
 
 export default function ServicesPage() {

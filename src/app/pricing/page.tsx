@@ -2,8 +2,8 @@ import Pricing from '@/components/Pricing';
 import EmergencyCTA from '@/components/EmergencyCTA';
 
 export const metadata = {
-    title: "Transparent Pricing | Direct Heating Ltd",
-    description: "Competitive and transparent pricing for boiler services, installations, and repairs in North London.",
+    title: "Boiler Service & Installation Prices | Direct Heating Ltd",
+    description: "Transparent heating and plumbing rates in North London. Competitive fixed prices for boiler servicing, safety checks, and repairs.",
 };
 
 export default function PricingPage() {
