@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function BusinessPage() {
     return (
-        <div className="container page-top" style={{ paddingTop: '6rem', paddingBottom: '4rem' }}>
+        <div className="container page-top" style={{ paddingBottom: '4rem' }}>
             <div className="section-header">
                 <h1>Commercial Heating Solutions</h1>
                 <p>Professional heating and plumbing services for North London businesses.</p>
@@ -45,9 +45,7 @@ export default function BusinessPage() {
                 <Services />
             </div>
 
-            <div style={{ marginTop: '4rem' }}>
-                <TrustBar />
-            </div>
+
 
             <div style={{ marginTop: '4rem' }}>
                 <ContactForm />

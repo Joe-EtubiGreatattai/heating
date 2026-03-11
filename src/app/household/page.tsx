@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function HouseholdPage() {
     return (
-        <div className="container page-top" style={{ paddingTop: '6rem', paddingBottom: '4rem' }}>
+        <div className="container page-top" style={{ paddingBottom: '4rem' }}>
             <div className="section-header">
                 <h1>Domestic Heating Solutions</h1>
                 <p>Reliable heating and plumbing services tailored for your home.</p>
@@ -45,9 +45,7 @@ export default function HouseholdPage() {
                 <Services />
             </div>
 
-            <div style={{ marginTop: '4rem' }}>
-                <TrustBar />
-            </div>
+
 
             <div style={{ marginTop: '4rem' }}>
                 <ContactForm />

@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function TestimonialsPage() {
     return (
-        <div style={{ paddingTop: '6rem' }}>
+        <div className="page-top">
             <Testimonials />
             <EmergencyCTA />
         </div>

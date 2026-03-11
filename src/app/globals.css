@@ -1225,7 +1225,7 @@ footer {
     }
 
     .hero-container {
-        padding: 5.5rem 1.25rem 2.5rem;
+        padding: 6.5rem 1.25rem 2.5rem;
         gap: 1.5rem;
     }
 
@@ -1297,7 +1297,7 @@ footer {
 
     /* Page-level top padding on mobile */
     .page-top {
-        padding-top: 5rem !important;
+        padding-top: 7rem !important;
         padding-bottom: 3rem !important;
     }
 

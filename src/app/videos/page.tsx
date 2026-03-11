@@ -9,7 +9,7 @@ export const metadata = {
 export default function VideosPage() {
     return (
         <>
-            <div className="container" style={{ paddingTop: '8rem' }}>
+            <div className="container page-top">
                 <div className="section-header">
                     <h1>How-To Videos</h1>
                     <p>Helpful guides and a look behind the scenes of our professional installations.</p>

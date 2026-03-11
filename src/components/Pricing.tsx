@@ -88,9 +88,9 @@ export default function Pricing() {
 
 
                         <div className="pricing-card">
-                            <div className="pricing-header">
-                                <h3>Property Management</h3>
-                                <div className="price" style={{ fontSize: '1.5rem', lineHeight: '1.3' }}>Competitive rates</div>
+                            <div className="pricing-header" style={{ marginBottom: '1rem', paddingBottom: '1rem' }}>
+                                <h3 style={{ marginBottom: '0.25rem' }}>Property Management</h3>
+                                <div className="price" style={{ fontSize: '1.4rem', lineHeight: '1.2', fontWeight: '700' }}>Competitive rates</div>
                             </div>
                             <ul className="pricing-features">
                                 <li>Agency rates</li>
