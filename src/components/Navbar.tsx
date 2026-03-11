@@ -77,9 +77,9 @@ export default function Navbar() {
                 <Link href="/" className="logo">
                     <img src="/Logo tsp white.png" alt="Direct Heating Ltd" className="logo-img" />
                 </Link>
-                <ul className={`nav-links ${isMobileMenuOpen ? 'mobile-active' : ''}`} style={isMobileMenuOpen ? { display: 'flex', flexDirection: 'column', position: 'absolute', top: '100%', left: 0, width: '100%', background: 'rgba(26, 26, 26, 0.98)', padding: '2rem' } : {}}>
+                <ul className={`nav-links${isMobileMenuOpen ? ' mobile-active' : ''}`}>
                     {isMobileMenuOpen && (
-                        <li style={{ marginBottom: '1rem' }}>
+                        <li style={{ marginBottom: '0.5rem' }}>
                             <Link href="/" className="logo" onClick={() => setIsMobileMenuOpen(false)}>
                                 <img src="/Logo tsp white.png" alt="Direct Heating Ltd" className="logo-img" />
                             </Link>

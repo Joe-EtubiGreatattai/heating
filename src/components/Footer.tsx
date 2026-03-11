@@ -57,7 +57,6 @@ export default function Footer() {
                 <div className="footer-bottom">
                     <div>
                         <p>&copy; 2024 Direct Heating Ltd. All rights reserved.</p>
-                        <p style={{ marginTop: '0.5rem' }}>Company Registration: [Number] | VAT: [Number]</p>
                     </div>
 
                     <div className="gas-safe-badge">

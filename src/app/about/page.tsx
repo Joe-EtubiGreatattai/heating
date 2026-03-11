@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function AboutPage() {
     return (
-        <div className="container" style={{ paddingTop: '8rem', paddingBottom: '4rem' }}>
+        <div className="container page-top" style={{ paddingTop: '6rem', paddingBottom: '4rem' }}>
             <div className="section-header">
                 <h1>About Direct Heating Ltd</h1>
                 <p>Your local experts in heating and plumbing for over [Number] years.</p>

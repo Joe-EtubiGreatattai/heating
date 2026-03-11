@@ -7,8 +7,8 @@ export const metadata = {
 
 export default function ContactPage() {
     return (
-        <>
+        <div style={{ paddingTop: '5rem' }}>
             <ContactForm />
-        </>
+        </div>
     );
 }

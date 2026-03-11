@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function BusinessPage() {
     return (
-        <div className="container" style={{ paddingTop: '8rem', paddingBottom: '4rem' }}>
+        <div className="container page-top" style={{ paddingTop: '6rem', paddingBottom: '4rem' }}>
             <div className="section-header">
                 <h1>Commercial Heating Solutions</h1>
                 <p>Professional heating and plumbing services for North London businesses.</p>
@@ -22,7 +22,7 @@ export default function BusinessPage() {
                         <h3>For Businesses & Commercial Sites</h3>
                     </div>
                     <p>Professional heating and plumbing for North London&apos;s commercial properties, from offices to warehouses.</p>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginTop: '2rem' }}>
+                    <div className="segment-inner-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginTop: '2rem' }}>
                         <ul className="segment-features" style={{ color: 'rgba(255,255,255,0.8)' }}>
                             <li style={{ color: 'rgba(255,255,255,0.8)' }}>Commercial Gas Safety</li>
                             <li style={{ color: 'rgba(255,255,255,0.8)' }}>Maintenance Contracts</li>

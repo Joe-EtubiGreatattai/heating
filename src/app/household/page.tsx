@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function HouseholdPage() {
     return (
-        <div className="container" style={{ paddingTop: '8rem', paddingBottom: '4rem' }}>
+        <div className="container page-top" style={{ paddingTop: '6rem', paddingBottom: '4rem' }}>
             <div className="section-header">
                 <h1>Domestic Heating Solutions</h1>
                 <p>Reliable heating and plumbing services tailored for your home.</p>
@@ -22,7 +22,7 @@ export default function HouseholdPage() {
                         <h3>For Homeowners & Tenants</h3>
                     </div>
                     <p>Keep your family warm and safe with our reliable domestic services. From high-efficiency boiler installs to annual safety checks.</p>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginTop: '2rem' }}>
+                    <div className="segment-inner-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginTop: '2rem' }}>
                         <ul className="segment-features" style={{ color: 'var(--text-gray)' }}>
                             <li style={{ color: 'var(--text-gray)' }}>Annual Boiler Servicing</li>
                             <li style={{ color: 'var(--text-gray)' }}>Radiator & Valve Repairs</li>
