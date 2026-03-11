@@ -432,6 +432,10 @@ section {
     display: inline-block;
 }
 
+.page-top {
+    padding-top: 8rem;
+}
+
 .section-header h2::after {
     content: '';
     position: absolute;
