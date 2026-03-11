@@ -588,6 +588,12 @@ section {
     border-radius: 16px;
     padding: 2.5rem;
     transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.segment-card .btn {
+    margin-top: auto;
 }
 
 .segment-card:hover {
@@ -680,12 +686,14 @@ section {
 
 .pricing-card {
     background: var(--white);
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 2.5rem;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
     border: 2px solid transparent;
     transition: all 0.3s;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .pricing-card.featured {
@@ -761,8 +769,8 @@ section {
 
 .pricing-cta {
     width: 100%;
-    text-align: center;
     justify-content: center;
+    margin-top: auto;
 }
 
 /* Testimonials */
@@ -1552,6 +1560,14 @@ footer {
     z-index: 999;
 }
 
+.sticky-cta.active {
+    display: flex;
+}
+
+body {
+    padding-bottom: 80px;
+}
+
 .sticky-cta .btn {
     flex: 1;
     justify-content: center;
@@ -1562,12 +1578,8 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .sticky-cta {
-        display: flex;
-    }
-
     body {
-        padding-bottom: 80px;
+        padding-bottom: 120px;
     }
 }
 

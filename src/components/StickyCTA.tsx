@@ -21,7 +21,7 @@ export default function StickyCTA() {
     }, []);
 
     return (
-        <div className="sticky-cta" style={{ display: isVisible ? 'flex' : 'none' }}>
+        <div className={`sticky-cta ${isVisible ? 'active' : ''}`}>
             <a href="tel:02046008746" className="btn btn-primary">📞 Call Now</a>
             <Link href="/contact" className="btn btn-secondary" style={{ borderColor: 'var(--primary)', color: 'var(--primary)' }}>Get Quote</Link>
         </div>

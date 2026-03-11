@@ -34,11 +34,7 @@ export default function Hero() {
                     <div className="hero-image-main">
                         {/* Engineers with boiler background */}
                     </div>
-                    <div className="floating-card review">
-                        <div className="stars">★★★★★</div>
-                        <p>&ldquo;Excellent service from start to finish. Completed to a very high standard.&rdquo;</p>
-                        <small>- Lucy Perry</small>
-                    </div>
+
                     <div className="floating-card stats">
                         <h4>500+</h4>
                         <p>Installations This Year</p>
