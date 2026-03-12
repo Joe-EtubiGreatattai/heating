@@ -11,7 +11,9 @@ export default function Hero() {
 
                     <div className="hero-badges">
                         <div className="badge">
-                            <div className="badge-icon">✓</div>
+                            <div className="badge-icon" style={{ background: 'white', overflow: 'hidden', padding: '2px' }}>
+                                <img src="/Gas Safe.jpg" alt="Gas Safe" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                            </div>
                             <div className="badge-text">Gas Safe <strong>Registered</strong></div>
                         </div>
                         <div className="badge">

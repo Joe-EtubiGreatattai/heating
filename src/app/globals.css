@@ -608,7 +608,7 @@ section {
 
 .segment-header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
     margin-bottom: 1.5rem;
 }
@@ -1588,8 +1588,13 @@ body {
 }
 
 /* FAQ Section */
+#self-fix-faults {
+    padding-bottom: 1rem;
+}
+
 .faq-section {
     background: var(--light-gray);
+    padding: 1rem 0;
 }
 
 .faq-grid {

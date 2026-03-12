@@ -26,11 +26,11 @@ const services = [
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
         ),
         title: "Emergency Repairs",
-        description: "24/7 emergency callout for boiler breakdowns. Fast response times. We diagnose and fix problems quickly.",
+        description: "Emergency callout for boiler breakdowns. Fast response times. We diagnose and fix problems quickly.",
         link: "tel:02046008746",
         cta: "Call Now",
         isExternal: true,
-        label: "24/7"
+        label: "Emergency"
     },
     {
         icon: (

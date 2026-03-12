@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     default: "Direct Heating Ltd | Gas Safe Boiler Installation & Plumbing North London",
     template: "%s | Direct Heating Ltd"
   },
-  description: "Gas Safe registered heating engineers in North London. Specialized in boiler installation, servicing, and emergency repairs. 24/7 coverage. Get a free quote today.",
+  description: "Gas Safe registered heating engineers in North London. Specialized in boiler installation, servicing, and emergency repairs. Get a free quote today.",
   keywords: ["boiler installation North London", "Gas Safe engineer London", "emergency boiler repair", "heating engineering North London", "boiler servicing", "Vaillant installer", "Worcester Bosch repairs"],
   authors: [{ name: "Direct Heating Ltd" }],
   creator: "Direct Heating Ltd",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Direct Heating Ltd | Gas Safe Boiler Installation North London",
-    description: "Reliable Gas Safe heating engineers for boiler installation, servicing & repairs. 24/7 Emergency callouts.",
+    description: "Reliable Gas Safe heating engineers for boiler installation, servicing & repairs. Prompt emergency callouts.",
     images: ["/Logo tsp white.png"],
   },
   robots: {
@@ -98,10 +98,9 @@ export default function RootLayout({
                     },
                     {
                       "@type": "OpeningHoursSpecification",
-                      "dayOfWeek": ["Saturday", "Sunday"],
-                      "opens": "00:00",
-                      "closes": "23:59",
-                      "description": "Emergency Callouts Only"
+                      "dayOfWeek": ["Saturday"],
+                      "opens": "08:00",
+                      "closes": "13:00"
                     }
                   ],
                   "sameAs": [

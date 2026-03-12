@@ -29,7 +29,6 @@ export default function Footer() {
                             <li><Link href="/services">Boiler Servicing</Link></li>
                             <li><Link href="/services">Emergency Repairs</Link></li>
                             <li><Link href="/services">Underfloor Heating</Link></li>
-                            <li><Link href="/services">Bathrooms</Link></li>
                         </ul>
                     </div>
 
@@ -56,7 +55,7 @@ export default function Footer() {
 
                 <div className="footer-bottom">
                     <div>
-                        <p>&copy; 2024 Direct Heating Ltd. All rights reserved.</p>
+
                     </div>
 
                     <div className="gas-safe-badge">

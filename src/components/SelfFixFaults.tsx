@@ -6,7 +6,7 @@ export default function SelfFixFaults() {
             <div className="container">
                 <div className="section-header">
                     <span className="section-subtitle">Troubleshooting</span>
-                    <h2>Common Boiler and Central Heating Faults You May Be Able to Fix Yourself</h2>
+                    <h2>Common Faults You Can Fix Yourself</h2>
                     <p>Before calling an engineer, check these common issues that you might be able to resolve quickly and safely.</p>
                 </div>
 

@@ -4,7 +4,7 @@ import ContactForm from '@/components/ContactForm';
 
 export const metadata = {
     title: "Expert Boiler Installation & Servicing North London",
-    description: "Gas Safe registered heating engineers for high-efficiency boiler installations, annual servicing, and 24/7 emergency repairs across North London.",
+    description: "Gas Safe registered heating engineers for high-efficiency boiler installations, annual servicing, and emergency repairs across North London.",
 };
 
 export default function ServicesPage() {
