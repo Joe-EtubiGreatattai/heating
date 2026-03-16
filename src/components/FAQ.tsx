@@ -34,6 +34,18 @@ const faqs = [
     {
         question: "What payment methods do you accept?",
         answer: "We accept various payment methods, including bank transfers and card payments."
+    },
+    {
+        question: "My boiler has a low pressure fault code, what should I do?",
+        answer: "First, check the pressure gauge. The ideal pressure for most systems is between 1 and 1.5 bar. If it's low, you can top it up using the filling loop and then reset the boiler. If the pressure continues to drop, please call us to investigate as this could indicate a larger underlying issue."
+    },
+    {
+        question: "Why is my radiator hot at the bottom but cold at the top?",
+        answer: "This is usually caused by air trapped inside the radiator. Releasing the air by bleeding the radiator may resolve the issue. Note that bleeding radiators can lower system pressure, so you might need to top the boiler pressure back up afterwards."
+    },
+    {
+        question: "My wireless thermostat screen is blank, what should I check?",
+        answer: "Most wireless thermostats are battery-powered. If the screen is blank or unresponsive, try replacing the batteries. This often resolves the issue immediately without needing an engineer visit."
     }
 ];
 

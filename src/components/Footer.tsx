@@ -25,7 +25,7 @@ export default function Footer() {
                     <div className="footer-links">
                         <h4>Services</h4>
                         <ul>
-                            <li><Link href="/services">Boiler Installation</Link></li>
+                            <li><Link href="/services">Boiler Quote</Link></li>
                             <li><Link href="/services">Boiler Servicing</Link></li>
                             <li><Link href="/services">Emergency Repairs</Link></li>
                             <li><Link href="/services">Underfloor Heating</Link></li>
@@ -63,7 +63,7 @@ export default function Footer() {
                             <strong style={{ color: 'var(--accent)', display: 'block' }}>Gas Safe Registered</strong>
                         </div>
                         <div style={{ width: '60px', height: '60px', background: 'white', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                            <img src="/Gas Safe.jpg" alt="Gas Safe Registered" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                            <img src="/Gas Safe.png" alt="Gas Safe Registered" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                         </div>
                     </div>
                 </div>

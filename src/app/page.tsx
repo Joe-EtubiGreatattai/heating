@@ -6,7 +6,6 @@ import VideoSection from '@/components/VideoSection';
 import EmergencyCTA from '@/components/EmergencyCTA';
 import ContactForm from '@/components/ContactForm';
 import FAQ from '@/components/FAQ';
-import SelfFixFaults from '@/components/SelfFixFaults';
 import Segments from '@/components/Segments';
 
 export const metadata = {
@@ -24,7 +23,6 @@ export default function Home() {
       <Pricing />
       <Testimonials />
       <VideoSection />
-      <SelfFixFaults />
       <FAQ />
       <ContactForm />
     </>

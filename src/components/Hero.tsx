@@ -12,7 +12,7 @@ export default function Hero() {
                     <div className="hero-badges">
                         <div className="badge">
                             <div className="badge-icon" style={{ background: 'white', overflow: 'hidden', padding: '2px' }}>
-                                <img src="/Gas Safe.jpg" alt="Gas Safe" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                                <img src="/Gas Safe.png" alt="Gas Safe" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                             </div>
                             <div className="badge-text">Gas Safe <strong>Registered</strong></div>
                         </div>
@@ -28,6 +28,7 @@ export default function Hero() {
 
                     <div className="hero-cta-group">
                         <Link href="/contact" className="btn btn-primary">Get Free Quote</Link>
+                        <a href="https://wa.me/442046008746" target="_blank" rel="noreferrer" className="btn btn-whatsapp">WhatsApp Us</a>
                         <a href="tel:02046008746" className="btn btn-secondary">Call Now</a>
                     </div>
                 </div>
@@ -35,6 +36,12 @@ export default function Hero() {
                 <div className="hero-image">
                     <div className="hero-image-main">
                         {/* Engineers with boiler background */}
+                    </div>
+
+                    <div className="floating-card review">
+                        <div className="stars">★★★★★</div>
+                        <p>&quot;Excellent service from start to finish. Completed to a very high standard.&quot;</p>
+                        <strong style={{ display: 'block', marginTop: '0.5rem', color: 'var(--primary)', fontSize: '0.85rem' }}>- Lucy</strong>
                     </div>
 
                     <div className="floating-card stats">

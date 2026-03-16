@@ -86,7 +86,7 @@ export default function ContactForm() {
                             <label>Service Required *</label>
                             <select required>
                                 <option value="">Select a service...</option>
-                                <option value="install">Boiler Installation</option>
+                                <option value="install">Boiler Quote</option>
                                 <option value="repair">Boiler Repair</option>
                                 <option value="service">Annual Service</option>
                                 <option value="emergency">Emergency Callout</option>

@@ -305,6 +305,17 @@ body {
     color: var(--primary);
 }
 
+.btn-whatsapp {
+    background: #25D366;
+    color: var(--white);
+}
+
+.btn-whatsapp:hover {
+    background: #128C7E;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+}
+
 .hero-image {
     position: relative;
 }
@@ -1190,7 +1201,18 @@ footer {
     }
 
     .floating-card {
-        display: none;
+        padding: 0.85rem;
+        scale: 0.8;
+    }
+
+    .floating-card.review {
+        top: 10%;
+        left: 0;
+    }
+
+    .floating-card.stats {
+        bottom: 15%;
+        right: 0;
     }
 
     .contact-grid {
@@ -1286,6 +1308,21 @@ footer {
         justify-content: center;
         padding: 0.875rem 1rem;
         font-size: 1rem;
+    }
+
+    .floating-card {
+        scale: 0.75;
+        padding: 0.75rem;
+    }
+
+    .floating-card.review {
+        top: 0;
+        left: -10px;
+    }
+
+    .floating-card.stats {
+        bottom: 0;
+        right: -10px;
     }
 
     .section-header {
@@ -1576,9 +1613,22 @@ body {
     flex: 1;
     justify-content: center;
     white-space: nowrap;
-    padding: 0.875rem 1rem;
-    font-size: 1rem;
-    max-width: 180px;
+    padding: 0.8rem 0.5rem;
+    font-size: 0.9rem;
+    max-width: 151px;
+    min-width: 100px;
+}
+
+@media (max-width: 768px) {
+    .sticky-cta {
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .sticky-cta .btn {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.85rem;
+    }
 }
 
 @media (max-width: 768px) {

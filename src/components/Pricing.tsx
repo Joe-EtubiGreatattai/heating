@@ -40,7 +40,7 @@ export default function Pricing() {
 
                         <div className="pricing-card featured">
                             <div className="pricing-header">
-                                <h3>Boiler Installation</h3>
+                                <h3>Boiler Quote</h3>
                                 <div className="price">Free quotes available</div>
                             </div>
                             <ul className="pricing-features">
@@ -61,10 +61,10 @@ export default function Pricing() {
                             </div>
                             <ul className="pricing-features">
                                 <li>Boiler faults</li>
-                                <li>leak repairs</li>
-                                <li>plumbing issues</li>
-                                <li>heating system issues</li>
-                                <li>minimum 1hour charge</li>
+                                <li>Leak repairs</li>
+                                <li>Plumbing issues</li>
+                                <li>Heating system issues</li>
+                                <li>Minimum 1 hour charge</li>
                             </ul>
                             <Link href="/contact" className="btn btn-primary pricing-cta">Book Engineer</Link>
                         </div>

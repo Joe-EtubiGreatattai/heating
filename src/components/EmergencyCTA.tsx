@@ -4,7 +4,7 @@ export default function EmergencyCTA() {
     return (
         <section className="emergency-cta">
             <div className="container">
-                <h2>🚨 Emergency Boiler Breakdown?</h2>
+                <h2>🚨 Boiler Breakdown</h2>
                 <p>Fast emergency response for heating breakdowns across North London</p>
                 <a href="tel:02046008746" className="emergency-phone">📞 0204 600 8746</a>
                 <br />
