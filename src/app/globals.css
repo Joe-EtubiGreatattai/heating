@@ -876,6 +876,171 @@ section {
     font-weight: 600;
 }
 
+.gallery-section {
+    background: radial-gradient(1200px 600px at 50% 0%, rgba(201, 169, 98, 0.15), rgba(26, 26, 26, 0)),
+        radial-gradient(900px 500px at 20% 80%, rgba(255, 255, 255, 0.05), rgba(26, 26, 26, 0)),
+        linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-header h2 {
+    color: var(--white);
+}
+
+.gallery-header p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.gallery-shell {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem 3rem;
+}
+
+.gallery-carousel {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr 1fr;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.gallery-slide {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #0b0b0b;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+}
+
+.gallery-slide.is-side {
+    height: 260px;
+    opacity: 0.65;
+    transform: scale(0.92);
+    filter: saturate(0.9);
+}
+
+.gallery-slide.is-active {
+    height: 360px;
+    transform: scale(1.03);
+    border-color: rgba(201, 169, 98, 0.35);
+    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
+    z-index: 1;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 46px;
+    height: 46px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(0, 0, 0, 0.55);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(10px);
+}
+
+.gallery-nav:hover {
+    background: rgba(201, 169, 98, 0.18);
+    border-color: rgba(201, 169, 98, 0.45);
+}
+
+.gallery-nav-left {
+    left: 0.75rem;
+}
+
+.gallery-nav-right {
+    right: 0.75rem;
+}
+
+.gallery-brand {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.35rem;
+    padding: 0.75rem 0.9rem;
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(10px);
+}
+
+.gallery-brand-logo {
+    height: 22px;
+    width: auto;
+    display: block;
+}
+
+.gallery-brand-phone {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.4px;
+}
+
+.gallery-brand-phone:hover {
+    color: var(--accent);
+}
+
+.gallery-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1.25rem 1.25rem 1.1rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0));
+}
+
+.gallery-caption-text {
+    max-width: 72%;
+    font-size: 1.15rem;
+    font-weight: 800;
+    text-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.gallery-dots {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.55rem;
+}
+
+.gallery-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.gallery-dot.is-active {
+    width: 28px;
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
 /* Video Section */
 .video-section {
     background: var(--primary);
@@ -1342,6 +1507,56 @@ footer {
     .section-header p {
         font-size: 0.95rem;
         margin-top: 0.75rem;
+    }
+
+    .gallery-shell {
+        padding: 0.5rem 0;
+    }
+
+    .gallery-carousel {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .gallery-slide.is-side {
+        display: none;
+    }
+
+    .gallery-slide.is-active {
+        height: 260px;
+        transform: none;
+    }
+
+    .gallery-nav {
+        width: 42px;
+        height: 42px;
+    }
+
+    .gallery-nav-left {
+        left: 0.5rem;
+    }
+
+    .gallery-nav-right {
+        right: 0.5rem;
+    }
+
+    .gallery-brand {
+        top: 0.75rem;
+        right: 0.75rem;
+        padding: 0.6rem 0.75rem;
+    }
+
+    .gallery-brand-logo {
+        height: 18px;
+    }
+
+    .gallery-brand-phone {
+        font-size: 0.85rem;
+    }
+
+    .gallery-caption-text {
+        max-width: 100%;
+        font-size: 1rem;
     }
 
     /* Page-level top padding on mobile */

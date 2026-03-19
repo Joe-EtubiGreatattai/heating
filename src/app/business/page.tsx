@@ -1,5 +1,4 @@
 import ContactForm from '@/components/ContactForm';
-import TrustBar from '@/components/TrustBar';
 import Services from '@/components/Services';
 
 export const metadata = {

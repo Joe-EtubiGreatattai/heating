@@ -9,9 +9,8 @@ export default function VideoSection() {
         <section className="video-section">
             <div className="container">
                 <div className="section-header">
-                    <h2 style={{ color: 'white' }}>Gallery</h2>
-                    <p style={{ color: 'rgba(255,255,255,0.8)' }}>Watch our team in action. Professional boiler installations
-                        completed to the highest standards.</p>
+                    <h2 style={{ color: 'white' }}>Video</h2>
+                    <p style={{ color: 'rgba(255,255,255,0.8)' }}>Watch our team in action. Professional boiler installations completed to the highest standards.</p>
                 </div>
 
                 <div className="video-container">

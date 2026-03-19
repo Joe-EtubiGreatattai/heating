@@ -4,6 +4,12 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+type NavLink = {
+    name: string;
+    href: string;
+    id: string;
+};
+
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isNavbarScrolled, setIsNavbarScrolled] = useState(false);
@@ -51,7 +57,7 @@ export default function Navbar() {
         };
     }, []);
 
-    const navLinks = [
+    const navLinks: NavLink[] = [
         { name: 'Home', href: '/', id: 'home' },
         { name: 'Services', href: '/services', id: 'services' },
         { name: 'Pricing', href: '/pricing', id: 'pricing' },
@@ -61,7 +67,7 @@ export default function Navbar() {
         { name: 'Contact Us', href: '/contact', id: 'contact' },
     ];
 
-    const isLinkActive = (link: any) => {
+    const isLinkActive = (link: NavLink) => {
         // On the homepage, links are active based on the scrolled section
         if (pathname === '/') {
             return activeSection === link.id;

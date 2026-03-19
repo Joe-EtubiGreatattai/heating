@@ -7,6 +7,7 @@ import EmergencyCTA from '@/components/EmergencyCTA';
 import ContactForm from '@/components/ContactForm';
 import FAQ from '@/components/FAQ';
 import Segments from '@/components/Segments';
+import Gallery from '@/components/Gallery';
 
 export const metadata = {
   title: "Direct Heating Ltd | Gas Safe Boiler Installation & Plumbing North London",
@@ -22,6 +23,7 @@ export default function Home() {
       <EmergencyCTA />
       <Pricing />
       <Testimonials />
+      <Gallery />
       <VideoSection />
       <FAQ />
       <ContactForm />
