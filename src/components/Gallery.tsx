@@ -11,31 +11,27 @@ type Slide = {
 export default function Gallery() {
     const slides: Slide[] = useMemo(
         () => [
-            {
-                src: '/hero.png',
-                alt: 'Boiler installation photo',
-                caption: 'Boiler installations completed to a high standard',
-            },
-            {
-                src: '/hero.png',
-                alt: 'Bathroom plumbing photo',
-                caption: 'Beautiful bathrooms expertly installed',
-            },
-            {
-                src: '/hero.png',
-                alt: 'Heating system photo',
-                caption: 'Reliable heating upgrades for modern homes',
-            },
-            {
-                src: '/hero.png',
-                alt: 'Pipework photo',
-                caption: 'Neat, tidy pipework and professional finishes',
-            },
-            {
-                src: '/hero.png',
-                alt: 'Service visit photo',
-                caption: 'Servicing and repairs across North London',
-            },
+            { src: '/gallery-images/PHOTO-2026-02-05-09-30-10.jpg', alt: 'Boiler installation', caption: 'Expert boiler installations completed to the highest standards' },
+            { src: '/gallery-images/PHOTO-2026-02-01-17-23-19.jpg', alt: 'Heating system', caption: 'High-efficiency heating system upgrades' },
+            { src: '/gallery-images/PHOTO-2026-01-31-15-55-46.jpg', alt: 'Pipework', caption: 'Professional pipework and clean installation finish' },
+            { src: '/gallery-images/PHOTO-2026-01-31-15-13-16.jpg', alt: 'Plumbing repair', caption: 'Reliable plumbing repairs for modern homes' },
+            { src: '/gallery-images/PHOTO-2025-10-17-19-23-20 (1).jpg', alt: 'Site work', caption: 'Detailed site assessments and quality plumbing' },
+            { src: '/gallery-images/PHOTO-2025-10-17-19-24-19 (1).jpg', alt: 'Installation', caption: 'High-quality components and expert fitting' },
+            { src: '/gallery-images/PHOTO-2025-10-17-19-24-19 (2).jpg', alt: 'Detail work', caption: 'Precision engineering in every project' },
+            { src: '/gallery-images/PHOTO-2025-10-17-19-24-19.jpg', alt: 'Completed project', caption: 'Professional finishes on all heating projects' },
+            { src: '/gallery-images/0db48f8d-fbda-472c-ab68-3a961d7eba27.JPG', alt: 'Bathroom project', caption: 'Beautifully finished bathroom plumbing' },
+            { src: '/gallery-images/4dfc120a-1c14-4c38-8dcf-ec3236cd4ecf.JPG', alt: 'General maintenance', caption: 'Routine maintenance and servicing work' },
+            { src: '/gallery-images/61a58f1c-85a7-4786-b625-88eaffed559b.JPG', alt: 'Heating component', caption: 'Expert fitting of advanced heating controls' },
+            { src: '/gallery-images/6fee69d8-3183-4002-a65b-cb97f61cb3cc.JPG', alt: 'Repair job', caption: 'Emergency repairs and part replacements' },
+            { src: '/gallery-images/8f0468d6-0316-4441-8524-1d8c10610af6.JPG', alt: 'Water system', caption: 'Hot water cylinder and system upgrades' },
+            { src: '/gallery-images/96ebc59b-20ab-41ae-941a-4a36398970d4.JPG', alt: 'Underfloor heating', caption: 'Specialized heating system installations' },
+            { src: '/gallery-images/97681aba-02fd-4ce2-a528-13059335ea0e.JPG', alt: 'Customer service', caption: 'Professional service and clear communication' },
+            { src: '/gallery-images/9a033b09-a1fd-4246-b760-fa2d242fc13a.JPG', alt: 'System testing', caption: 'Rigorous testing of all new installations' },
+            { src: '/gallery-images/a1c66160-853c-4456-85fe-857347f26e8c.JPG', alt: 'Local plumbing', caption: 'Serving residential properties across North London' },
+            { src: '/gallery-images/b272a2b9-3dfd-4d7f-af38-4b34167722cb.JPG', alt: 'Expertise', caption: 'Over a decade of industry-leading experience' },
+            { src: '/gallery-images/eb5c508a-45bf-441d-a40b-255c8acb8109.JPG', alt: 'Safety', caption: 'Gas Safe registered and fully insured' },
+            { src: '/gallery-images/f7688f7b-4af8-4ca4-807a-5098fbf055bf.JPG', alt: 'Modern boilers', caption: 'Specialists in modern, high-efficiency boilers' },
+            { src: '/gallery-images/Screenshot 2025-09-25 at 4.13.53 PM.png', alt: 'Enquiry form', caption: 'Easy online booking and fast responses' },
         ],
         []
     );

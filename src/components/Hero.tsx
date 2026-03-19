@@ -28,7 +28,7 @@ export default function Hero() {
 
                      <div className="hero-cta-group">
                         <Link href="/contact" className="btn btn-primary">Get Free Quote</Link>
-                        <a href="#booking" className="btn btn-accent">Book Now</a>
+                        <a href="#booking" className="btn btn-secondary">Book Now</a>
                         <a href="https://wa.me/442046008746" target="_blank" rel="noreferrer" className="btn btn-whatsapp">WhatsApp Us</a>
                     </div>
                 </div>
