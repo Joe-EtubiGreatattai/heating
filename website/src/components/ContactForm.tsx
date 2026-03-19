@@ -1,10 +1,38 @@
 'use client';
 
 export default function ContactForm() {
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        alert('Thank you for your enquiry! We will contact you within 2 hours.');
-        (e.target as HTMLFormElement).reset();
+        const formData = new FormData(e.target as HTMLFormElement);
+        const data = {
+            firstName: formData.get('firstName'),
+            lastName: formData.get('lastName'),
+            phone: formData.get('phone'),
+            email: formData.get('email'),
+            service: formData.get('service'),
+            customerType: formData.get('customerType'),
+            message: formData.get('message'),
+        };
+
+        try {
+            const response = await fetch('https://direct-heating.duckdns.org/api/quotes', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                alert('Thank you for your enquiry! We will contact you within 2 hours.');
+                (e.target as HTMLFormElement).reset();
+            } else {
+                alert('Something went wrong. Please try again or call us directly.');
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            alert('Could not connect to the server. Please check your internet connection.');
+        }
     };
 
     return (
@@ -63,28 +91,28 @@ export default function ContactForm() {
                         <div className="form-row">
                             <div className="form-group">
                                 <label>First Name *</label>
-                                <input type="text" required placeholder="John" />
+                                <input name="firstName" type="text" required placeholder="John" />
                             </div>
                             <div className="form-group">
                                 <label>Last Name *</label>
-                                <input type="text" required placeholder="Smith" />
+                                <input name="lastName" type="text" required placeholder="Smith" />
                             </div>
                         </div>
 
                         <div className="form-row">
                             <div className="form-group">
                                 <label>Phone *</label>
-                                <input type="tel" required placeholder="0204 600 8746" />
+                                <input name="phone" type="tel" required placeholder="0204 600 8746" />
                             </div>
                             <div className="form-group">
                                 <label>Email *</label>
-                                <input type="email" required placeholder="john@example.com" />
+                                <input name="email" type="email" required placeholder="john@example.com" />
                             </div>
                         </div>
 
                         <div className="form-group">
                             <label>Service Required *</label>
-                            <select required>
+                            <select name="service" required>
                                 <option value="">Select a service...</option>
                                 <option value="install">Boiler Quote</option>
                                 <option value="repair">Boiler Repair</option>
@@ -97,7 +125,7 @@ export default function ContactForm() {
 
                         <div className="form-group">
                             <label>Customer Type *</label>
-                            <select required>
+                            <select name="customerType" required>
                                 <option value="">Select...</option>
                                 <option value="domestic">Domestic/Homeowner</option>
                                 <option value="landlord">Landlord</option>
@@ -108,7 +136,7 @@ export default function ContactForm() {
 
                         <div className="form-group">
                             <label>Message</label>
-                            <textarea placeholder="Tell us about your requirements..."></textarea>
+                            <textarea name="message" placeholder="Tell us about your requirements..."></textarea>
                         </div>
 
                         <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>

@@ -45,7 +45,7 @@ export default function Navbar() {
         const observer = new IntersectionObserver(observerCallback, observerOptions);
 
         // Sections to observe
-        const sections = ['home', 'services', 'pricing', 'household', 'business', 'testimonials', 'contact'];
+        const sections = ['home', 'services', 'pricing', 'household', 'business', 'testimonials', 'booking', 'contact'];
         sections.forEach(id => {
             const el = document.getElementById(id);
             if (el) observer.observe(el);
@@ -65,6 +65,7 @@ export default function Navbar() {
         { name: 'Business', href: '/business', id: 'business' },
         { name: 'Reviews', href: '/testimonials', id: 'testimonials' },
         { name: 'Contact Us', href: '/contact', id: 'contact' },
+        { name: 'Book Now', href: '#booking', id: 'booking' },
     ];
 
     const isLinkActive = (link: NavLink) => {

@@ -8,6 +8,7 @@ import ContactForm from '@/components/ContactForm';
 import FAQ from '@/components/FAQ';
 import Segments from '@/components/Segments';
 import Gallery from '@/components/Gallery';
+import BookingCalendar from '@/components/BookingCalendar';
 
 export const metadata = {
   title: "Direct Heating Ltd | Gas Safe Boiler Installation & Plumbing North London",
@@ -26,6 +27,7 @@ export default function Home() {
       <Gallery />
       <VideoSection />
       <FAQ />
+      <BookingCalendar />
       <ContactForm />
     </>
   );

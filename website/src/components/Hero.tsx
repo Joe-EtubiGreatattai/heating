@@ -26,10 +26,10 @@ export default function Hero() {
                         </div>
                     </div>
 
-                    <div className="hero-cta-group">
+                     <div className="hero-cta-group">
                         <Link href="/contact" className="btn btn-primary">Get Free Quote</Link>
+                        <a href="#booking" className="btn btn-accent">Book Now</a>
                         <a href="https://wa.me/442046008746" target="_blank" rel="noreferrer" className="btn btn-whatsapp">WhatsApp Us</a>
-                        <a href="tel:02046008746" className="btn btn-secondary">Call Now</a>
                     </div>
                 </div>
 
