@@ -1,67 +1,55 @@
-import Link from 'next/link';
+'use client';
 
-const services = [
-    {
-        icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-        ),
-        title: "Boiler Quote",
-        description: "Expert installation of Vaillant, Glow-worm, Worcester Bosch and other leading brands. 10-year warranties available.",
-        link: "/contact",
-        cta: "Get Quote",
-        label: "Premium"
-    },
-    {
-        icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" /></svg>
-        ),
-        title: "Boiler Servicing",
-        description: "Annual servicing to keep your boiler running efficiently and safely. Gas Safety Checks included. Prevent breakdowns.",
-        link: "/contact",
-        cta: "Book Service",
-        label: "Essential"
-    },
-    {
-        icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
-        ),
-        title: "Emergency Repairs",
-        description: "Emergency callout for boiler breakdowns. Fast response times. We diagnose and fix problems quickly.",
-        link: "tel:02046008746",
-        cta: "Call Now",
-        isExternal: true,
-        label: "Emergency"
-    },
-    {
-        icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 9V3m4.2 8.2l4.3-4.3m-12.7 0l4.3 4.3M12 12V3m0 9l4.2 4.2m-8.4 0L12 12z" /><circle cx="12" cy="12" r="9" /></svg>
-        ),
-        title: "Underfloor Heating",
-        description: "Installation and servicing of energy-efficient underfloor heating solutions for modern homes.",
-        link: "/contact",
-        cta: "Learn More"
-    },
-    {
-        icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
-        ),
-        title: "Hot Water Cylinders",
-        description: "Installation and repair of unvented/vented cylinders. High-quality brands supplied and fitted.",
-        link: "/contact",
-        cta: "Get Quote"
-    },
-    {
-        icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2" /></svg>
-        ),
-        title: "Plumbing Services",
-        description: "From leak repairs to new installations, our Gas Safe engineers handle all your domestic plumbing needs.",
-        link: "/contact",
-        cta: "Book Now"
-    }
+import Link from 'next/link';
+import { useEffect, useState, ReactElement } from 'react';
+
+const API = 'https://direct-heating.duckdns.org/api';
+
+interface ServiceItem {
+    _id: string;
+    title: string;
+    description: string;
+    link: string;
+    cta: string;
+    label: string;
+    isExternal: boolean;
+    iconName: string;
+}
+
+// Icon map for service icons stored by name
+const ICON_SVGs: Record<string, ReactElement> = {
+    star: <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>,
+    wrench: <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" /></svg>,
+    zap: <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>,
+    circle: <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9" /><path d="M12 8v8M8 12h8" /></svg>,
+    layers: <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>,
+    activity: <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2" /></svg>,
+};
+
+const FALLBACK: ServiceItem[] = [
+    { _id: '1', title: 'Boiler Quote', description: 'Expert installation of Vaillant, Glow-worm, Worcester Bosch and other leading brands. 10-year warranties available.', link: '/contact', cta: 'Get Quote', label: 'Premium', isExternal: false, iconName: 'star' },
+    { _id: '2', title: 'Boiler Servicing', description: 'Annual servicing to keep your boiler running efficiently and safely. Gas Safety Checks included. Prevent breakdowns.', link: '/contact', cta: 'Book Service', label: 'Essential', isExternal: false, iconName: 'wrench' },
+    { _id: '3', title: 'Emergency Repairs', description: 'Emergency callout for boiler breakdowns. Fast response times. We diagnose and fix problems quickly.', link: 'tel:02046008746', cta: 'Call Now', label: 'Emergency', isExternal: true, iconName: 'zap' },
+    { _id: '4', title: 'Underfloor Heating', description: 'Installation and servicing of energy-efficient underfloor heating solutions for modern homes.', link: '/contact', cta: 'Learn More', label: '', isExternal: false, iconName: 'circle' },
+    { _id: '5', title: 'Hot Water Cylinders', description: 'Installation and repair of unvented/vented cylinders. High-quality brands supplied and fitted.', link: '/contact', cta: 'Get Quote', label: '', isExternal: false, iconName: 'layers' },
+    { _id: '6', title: 'Plumbing Services', description: 'From leak repairs to new installations, our Gas Safe engineers handle all your domestic plumbing needs.', link: '/contact', cta: 'Book Now', label: '', isExternal: false, iconName: 'activity' },
 ];
 
 export default function Services() {
+    const [services, setServices] = useState<ServiceItem[]>([]);
+
+    useEffect(() => {
+        fetch(`${API}/cms/services`)
+            .then(r => r.json())
+            .then((data: ServiceItem[]) => {
+                if (Array.isArray(data) && data.length > 0) setServices(data);
+                else setServices(FALLBACK);
+            })
+            .catch(() => setServices(FALLBACK));
+    }, []);
+
+    if (services.length === 0) return null;
+
     return (
         <section id="services" className="services-section">
             <div className="container">
@@ -72,11 +60,11 @@ export default function Services() {
                 </div>
 
                 <div className="services-new-grid">
-                    {services.map((service, index) => (
-                        <div key={index} className="service-card-modern">
+                    {services.map(service => (
+                        <div key={service._id} className="service-card-modern">
                             {service.label && <span className="card-badge">{service.label}</span>}
                             <div className="card-icon-wrapper">
-                                {service.icon}
+                                {ICON_SVGs[service.iconName] ?? ICON_SVGs['wrench']}
                             </div>
                             <div className="card-content">
                                 <h3>{service.title}</h3>
