@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     template: "%s | Direct Heating Ltd"
   },
   icons: {
-    icon: "/direct-heating-logo-white.png"
+    icon: "/favicon.png"
   },
   description: "Gas Safe registered heating engineers in North London. Specialized in boiler installation, servicing, and emergency repairs. Get a free quote today.",
   keywords: ["boiler installation North London", "Gas Safe engineer London", "emergency boiler repair", "heating engineering North London", "boiler servicing", "Vaillant installer", "Worcester Bosch repairs"],

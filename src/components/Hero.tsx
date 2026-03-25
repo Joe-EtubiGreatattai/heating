@@ -63,7 +63,6 @@ export default function Hero() {
                             <div className="badge-text"><strong>Emergency</strong> Callouts</div>
                         </div>
                         <div className="badge">
-                            <div className="badge-icon">★</div>
                             <div className="badge-text">5-Star <strong>Rated</strong></div>
                         </div>
                     </div>
