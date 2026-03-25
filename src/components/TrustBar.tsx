@@ -1,3 +1,5 @@
+import { Phone } from 'lucide-react';
+
 export default function TrustBar() {
     return (
         <div className="trust-bar">
@@ -24,7 +26,7 @@ export default function TrustBar() {
                     </div>
                 </div>
                 <div className="trust-item">
-                    <span style={{ fontSize: '2rem' }}>⚡</span>
+                    <span style={{ fontSize: '2rem', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}><Phone size={28} color="black" /></span>
                     <div>
                         <strong>Rapid Response</strong>
                         <small style={{ display: 'block', color: 'var(--text-gray)' }}>Emergency Callouts</small>

@@ -54,7 +54,6 @@ export default function ContactForm() {
                                 <div className="contact-icon">📞</div>
                                 <div>
                                     <strong>0204 600 8746</strong>
-                                    <span>Mon-Sun, Emergency Callouts</span>
                                 </div>
                             </a>
 
@@ -62,7 +61,6 @@ export default function ContactForm() {
                                 <div className="contact-icon">✉️</div>
                                 <div>
                                     <strong>info@directheatingltd.com</strong>
-                                    <span>We reply within 2 hours</span>
                                 </div>
                             </a>
 

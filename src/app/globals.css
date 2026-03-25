@@ -472,6 +472,10 @@ section {
     overflow: hidden;
 }
 
+.services-section .section-subtitle {
+    color: var(--primary);
+}
+
 .section-subtitle {
     display: block;
     color: var(--accent);
@@ -1481,8 +1485,7 @@ footer {
     }
 
     .floating-card.review {
-        top: 0;
-        left: -10px;
+        display: none;
     }
 
     .floating-card.stats {

@@ -1,18 +1,77 @@
 'use client';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useSyncExternalStore } from 'react';
 import { CheckCircle2, AlertCircle, X, ChevronLeft, ChevronRight, Calendar as CalendarIcon, Clock } from 'lucide-react';
+
+const API_BASE = 'https://direct-heating.duckdns.org/api';
+
+type BookingItem = {
+    timeSlot: string;
+    status?: string | null;
+};
+
+type BookingSettings = {
+    openingTime: string;
+    closingTime: string;
+    slotDuration: number;
+    workingDays?: number[];
+    unavailableDates?: string[];
+};
+
+type StoreState = {
+    settings: BookingSettings;
+    bookedSlots: string[];
+    loading: boolean;
+    blockedDay?: { blocked: boolean; reason?: string };
+};
+
+const DEFAULT_SETTINGS: BookingSettings = { openingTime: '08:00', closingTime: '18:00', slotDuration: 60 };
+
+let storeState: StoreState = { settings: DEFAULT_SETTINGS, bookedSlots: [], loading: false, blockedDay: { blocked: false } };
+const storeListeners = new Set<() => void>();
+
+const getStoreSnapshot = () => storeState;
+
+const subscribeToStore = (listener: () => void) => {
+    storeListeners.add(listener);
+    return () => storeListeners.delete(listener);
+};
+
+const updateStore = (partial: Partial<StoreState>) => {
+    storeState = { ...storeState, ...partial };
+    storeListeners.forEach((listener) => listener());
+};
+
+const isRecord = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null;
+
+const isBookingItem = (value: unknown): value is BookingItem => {
+    if (!isRecord(value)) return false;
+    if (typeof value.timeSlot !== 'string') return false;
+    if (!('status' in value)) return true;
+    return typeof value.status === 'string' || value.status === null || value.status === undefined;
+};
+
+const isBookingSettings = (value: unknown): value is BookingSettings => {
+    if (!isRecord(value)) return false;
+    const v = value as Record<string, unknown>;
+    const workingDaysOk = !('workingDays' in v) || Array.isArray(v.workingDays);
+    const unavailableDatesOk = !('unavailableDates' in v) || Array.isArray(v.unavailableDates);
+    return typeof v.openingTime === 'string'
+        && typeof v.closingTime === 'string'
+        && typeof v.slotDuration === 'number'
+        && workingDaysOk
+        && unavailableDatesOk;
+};
 
 export default function BookingCalendar() {
     // Calendar State
     const [viewDate, setViewDate] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState<string | null>(null);
-    const [bookedSlots, setBookedSlots] = useState<string[]>([]);
-    const [loading, setLoading] = useState(false);
     const [showForm, setShowForm] = useState(false);
     const [bookingStatus, setBookingStatus] = useState<'idle' | 'success' | 'error'>('idle');
     const [errorMessage, setErrorMessage] = useState('');
     const [selectedSlot, setSelectedSlot] = useState('');
-    const [settings, setSettings] = useState({ openingTime: '08:00', closingTime: '18:00', slotDuration: 60 });
+    const [now, setNow] = useState(() => new Date());
+    const { settings, bookedSlots, loading, blockedDay } = useSyncExternalStore(subscribeToStore, getStoreSnapshot, getStoreSnapshot);
 
     const [formData, setFormData] = useState({
         fullName: '',
@@ -21,37 +80,53 @@ export default function BookingCalendar() {
     });
 
     useEffect(() => {
-        fetchSettings();
+        const run = async () => {
+            try {
+                const res = await fetch(`${API_BASE}/settings`);
+                const data: unknown = await res.json();
+                if (isBookingSettings(data)) updateStore({ settings: data });
+            } catch (error) {
+                console.error('Error fetching settings:', error);
+            }
+        };
+        void run();
     }, []);
 
     useEffect(() => {
-        if (selectedDate) {
-            fetchBookings();
-        }
-    }, [selectedDate]);
+        const id = window.setInterval(() => setNow(new Date()), 30_000);
+        return () => window.clearInterval(id);
+    }, []);
 
-    const fetchSettings = async () => {
-        try {
-            const res = await fetch('https://direct-heating.duckdns.org/api/settings');
-            const data = await res.json();
-            setSettings(data);
-        } catch (error) {
-            console.error('Error fetching settings:', error);
-        }
-    };
-
-    const fetchBookings = async () => {
+    useEffect(() => {
         if (!selectedDate) return;
-        setLoading(true);
-        try {
-            const res = await fetch(`https://direct-heating.duckdns.org/api/bookings?date=${selectedDate}`);
-            const data = await res.json();
-            setBookedSlots(data.filter((b: any) => b.status !== 'rejected').map((b: any) => b.timeSlot));
-        } catch (error) {
-            console.error('Error fetching bookings:', error);
+        const jsDay = new Date(selectedDate).getDay();
+        const weekday = jsDay === 0 ? 7 : jsDay;
+        const workingDays = Array.isArray(settings.workingDays) ? settings.workingDays : null;
+        const unavailableDates = Array.isArray(settings.unavailableDates) ? settings.unavailableDates : null;
+        const blockedByDay = workingDays ? !workingDays.includes(weekday) : false;
+        const blockedByDate = unavailableDates ? unavailableDates.includes(selectedDate) : false;
+        if (blockedByDay || blockedByDate) {
+            updateStore({ bookedSlots: [], blockedDay: { blocked: true, reason: blockedByDate ? 'date' : 'weekday' } });
+            return;
         }
-        setLoading(false);
-    };
+        const run = async () => {
+            updateStore({ loading: true });
+            try {
+                const res = await fetch(`${API_BASE}/availability?date=${encodeURIComponent(selectedDate)}`);
+                const data: unknown = await res.json();
+                const v = isRecord(data) ? (data as Record<string, unknown>) : null;
+                const slots = v && Array.isArray(v.bookedSlots) ? v.bookedSlots.filter((s) => typeof s === 'string') : [];
+                const blocked = v && typeof v.blocked === 'boolean' ? v.blocked : false;
+                const reason = v && typeof v.reason === 'string' ? v.reason : '';
+                updateStore({ bookedSlots: slots, blockedDay: { blocked, reason } });
+            } catch (error) {
+                console.error('Error fetching bookings:', error);
+            } finally {
+                updateStore({ loading: false });
+            }
+        };
+        void run();
+    }, [selectedDate]);
 
     const generatedSlots = useMemo(() => {
         const { openingTime, closingTime, slotDuration } = settings;
@@ -68,10 +143,10 @@ export default function BookingCalendar() {
 
     const handleBooking = async (e: React.FormEvent) => {
         e.preventDefault();
-        setLoading(true);
+        updateStore({ loading: true });
         setErrorMessage('');
         try {
-            const res = await fetch('https://direct-heating.duckdns.org/api/bookings', {
+            const res = await fetch(`${API_BASE}/bookings`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -84,7 +159,20 @@ export default function BookingCalendar() {
                 setBookingStatus('success');
                 setFormData({ fullName: '', email: '', note: '' });
                 setSelectedSlot('');
-                fetchBookings(); // Refresh slots
+                if (selectedDate) {
+                    try {
+                        const refreshRes = await fetch(`${API_BASE}/bookings?date=${encodeURIComponent(selectedDate)}`);
+                        const refreshData: unknown = await refreshRes.json();
+                        const slots = Array.isArray(refreshData)
+                            ? refreshData
+                                .filter(isBookingItem)
+                                .filter((b) => b.status !== 'rejected')
+                                .map((b) => b.timeSlot)
+                            : [];
+                        updateStore({ bookedSlots: slots });
+                    } catch {
+                    }
+                }
             } else {
                 const err = await res.json();
                 setBookingStatus('error');
@@ -94,7 +182,7 @@ export default function BookingCalendar() {
             setBookingStatus('error');
             setErrorMessage('Could not connect to server. Please try again later.');
         }
-        setLoading(false);
+        updateStore({ loading: false });
     };
 
     const closeForm = () => {
@@ -137,17 +225,38 @@ export default function BookingCalendar() {
         return date < today;
     };
 
+    const isPastSlot = (dateISO: string, timeSlot: string) => {
+        const [y, m, d] = dateISO.split('-').map(Number);
+        const [hh, mm] = timeSlot.split(':').map(Number);
+        if (![y, m, d, hh, mm].every(n => Number.isFinite(n))) return false;
+        const slotTime = new Date(y, m - 1, d, hh, mm, 0, 0);
+        return slotTime.getTime() <= now.getTime();
+    };
+
     const formatToISOValue = (date: Date) => {
         const d = new Date(date);
         d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
         return d.toISOString().split('T')[0];
     };
 
+    const getWeekdayNumber = (date: Date) => {
+        const jsDay = date.getDay();
+        return jsDay === 0 ? 7 : jsDay;
+    };
+
+    const isBlockedDate = (isoDate: string, dateObj: Date) => {
+        const workingDays = Array.isArray(settings.workingDays) ? settings.workingDays : null;
+        const unavailableDates = Array.isArray(settings.unavailableDates) ? settings.unavailableDates : null;
+        const blockedByDay = workingDays ? !workingDays.includes(getWeekdayNumber(dateObj)) : false;
+        const blockedByDate = unavailableDates ? unavailableDates.includes(isoDate) : false;
+        return blockedByDay || blockedByDate;
+    };
+
     return (
         <section id="booking" className="booking-section" style={{ padding: '6rem 0', background: '#fcfcfc' }}>
             <div className="container" style={{ maxWidth: '1200px' }}>
                 <div className="booking-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                    <h2 style={{ fontWeight: 800, marginBottom: '1.2rem', letterSpacing: '-1.5px' }}>Book Your Service</h2>
+                    <h2 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '1.2rem', letterSpacing: '-1.5px' }}>Book Your Service</h2>
                     <p style={{ color: 'var(--text-gray)', fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto' }}>
                         Professional heating solutions at your fingertips. Guaranteed slots with transparent pricing.
                     </p>
@@ -175,13 +284,14 @@ export default function BookingCalendar() {
                                 const isoDate = formatToISOValue(date);
                                 const isSelected = selectedDate === isoDate;
                                 const past = isPast(date);
+                                const blocked = isBlockedDate(isoDate, date);
 
                                 return (
                                     <button
                                         key={isoDate}
-                                        disabled={past}
+                                        disabled={past || blocked}
                                         onClick={() => setSelectedDate(isoDate)}
-                                        className={`day-btn ${isSelected ? 'selected' : ''} ${past ? 'past' : ''} ${isToday(date) ? 'today' : ''}`}
+                                        className={`day-btn ${isSelected ? 'selected' : ''} ${past || blocked ? 'past' : ''} ${isToday(date) ? 'today' : ''}`}
                                     >
                                         {date.getDate()}
                                     </button>
@@ -211,19 +321,24 @@ export default function BookingCalendar() {
 
                                 {loading ? (
                                     <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--accent)' }}>Searching slots...</div>
+                                        ) : blockedDay?.blocked ? (
+                                            <div style={{ padding: '1.5rem', textAlign: 'center', color: 'var(--text-gray)' }}>
+                                                We&apos;re not available on this day.
+                                            </div>
                                 ) : (
                                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: '0.8rem' }}>
                                         {generatedSlots.map(slot => {
                                             const isBooked = bookedSlots.includes(slot);
+                                            const pastSlot = selectedDate ? isPastSlot(selectedDate, slot) : false;
                                             return (
                                                 <button
                                                     key={slot}
-                                                    disabled={isBooked}
+                                                    disabled={isBooked || pastSlot}
                                                     onClick={() => {
                                                         setSelectedSlot(slot);
                                                         setShowForm(true);
                                                     }}
-                                                    className={`slot-btn ${isBooked ? 'booked' : ''}`}
+                                                    className={`slot-btn ${isBooked ? 'booked' : ''} ${pastSlot ? 'past' : ''}`}
                                                 >
                                                     {slot}
                                                 </button>
@@ -250,7 +365,7 @@ export default function BookingCalendar() {
                                     <h2 style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>Booking Sent!</h2>
                                     <p style={{ color: 'var(--text-gray)', fontSize: '1rem', lineHeight: '1.6' }}>
                                         Request received for <strong>{selectedDate}</strong> at <strong>{selectedSlot}</strong>.
-                                        We'll email you once confirmed.
+                                        We&apos;ll email you once confirmed.
                                     </p>
                                     <button onClick={closeForm} className="btn btn-primary" style={{ marginTop: '2.5rem', width: '100%', justifyContent: 'center' }}>Great!</button>
                                 </div>
@@ -292,8 +407,8 @@ export default function BookingCalendar() {
             <style jsx>{`
                 @media (max-width: 768px) {
                     .booking-section { padding: 4rem 0 !important; }
-                    .booking-header h2 { fontSize: 2.2rem !important; }
-                    .booking-grid { gridTemplateColumns: 1fr !important; }
+                    .booking-header h2 { font-size: 2.2rem !important; }
+                    .booking-grid { grid-template-columns: 1fr !important; }
                     .calendar-card { padding: 1.5rem !important; border-radius: 25px !important; }
                     .no-selection { height: 250px !important; border-radius: 25px !important; }
                 }
@@ -354,6 +469,10 @@ export default function BookingCalendar() {
                 }
                 .slot-btn.booked {
                     opacity: 0.3;
+                    cursor: not-allowed;
+                }
+                .slot-btn.past {
+                    opacity: 0.35;
                     cursor: not-allowed;
                 }
                 @keyframes slideIn {

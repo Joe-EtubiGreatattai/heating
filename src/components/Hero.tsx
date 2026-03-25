@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { Phone } from 'lucide-react';
 
 const API = 'https://direct-heating.duckdns.org/api';
 
@@ -58,7 +59,7 @@ export default function Hero() {
                             <div className="badge-text">Gas Safe <strong>Registered</strong></div>
                         </div>
                         <div className="badge">
-                            <div className="badge-icon">⚡</div>
+                            <div className="badge-icon"><Phone size={18} color="black" /></div>
                             <div className="badge-text"><strong>Emergency</strong> Callouts</div>
                         </div>
                         <div className="badge">

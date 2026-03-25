@@ -3,6 +3,7 @@
 import { useMemo, useState, useEffect } from 'react';
 
 const API = 'https://direct-heating.duckdns.org/api';
+const MEDIA_ORIGIN = new URL(API).origin;
 
 type Slide = {
     src: string;
@@ -11,27 +12,42 @@ type Slide = {
 };
 
 const FALLBACK_SLIDES: Slide[] = [
-    { src: '/gallery-images/PHOTO-2026-02-05-09-30-10.jpg', alt: 'Boiler installation', caption: 'Expert boiler installations completed to the highest standards' },
-    { src: '/gallery-images/PHOTO-2026-02-01-17-23-19.jpg', alt: 'Heating system', caption: 'High-efficiency heating system upgrades' },
-    { src: '/gallery-images/PHOTO-2026-01-31-15-55-46.jpg', alt: 'Pipework', caption: 'Professional pipework and clean installation finish' },
+    { src: 'https://direct-heating.duckdns.org/gallery-images/PHOTO-2026-02-05-09-30-10.jpg', alt: 'Boiler installation', caption: 'Expert boiler installations completed to the highest standards' },
+    { src: 'https://direct-heating.duckdns.org/gallery-images/PHOTO-2026-02-01-17-23-19.jpg', alt: 'Heating system', caption: 'High-efficiency heating system upgrades' },
+    { src: 'https://direct-heating.duckdns.org/gallery-images/PHOTO-2026-01-31-15-55-46.jpg', alt: 'Pipework', caption: 'Professional pipework and clean installation finish' },
 ];
 
 export default function Gallery() {
     const [slides, setSlides] = useState<Slide[]>([]);
     const [activeIndex, setActiveIndex] = useState(0);
 
+    const normalizeImageSrc = (src: string) => {
+        if (!src) return src;
+
+        if (src.startsWith('/')) {
+            return `${MEDIA_ORIGIN}${src}`;
+        }
+
+        try {
+            const parsed = new URL(src);
+            return `${MEDIA_ORIGIN}${parsed.pathname}`;
+        } catch {
+            return src;
+        }
+    };
+
     useEffect(() => {
         fetch(`${API}/cms/gallery`)
             .then(r => r.json())
             .then((data: Slide[]) => {
                 if (Array.isArray(data) && data.length > 0) {
-                    setSlides(data);
+                    setSlides(data.map((item) => ({ ...item, src: normalizeImageSrc(item.src) })));
                     setActiveIndex(Math.min(2, data.length - 1));
                 } else {
-                    setSlides(FALLBACK_SLIDES);
+                    setSlides(FALLBACK_SLIDES.map((item) => ({ ...item, src: normalizeImageSrc(item.src) })));
                 }
             })
-            .catch(() => setSlides(FALLBACK_SLIDES));
+            .catch(() => setSlides(FALLBACK_SLIDES.map((item) => ({ ...item, src: normalizeImageSrc(item.src) }))));
     }, []);
 
     const lastIndex = slides.length - 1;
