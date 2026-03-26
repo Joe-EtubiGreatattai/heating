@@ -335,15 +335,6 @@ body {
     isolation: isolate;
 }
 
-.hero-image-main::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url('/hero.png') no-repeat center top;
-    background-size: contain;
-    opacity: 0.95;
-    z-index: -1;
-}
 
 .floating-card {
     position: absolute;

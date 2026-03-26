@@ -77,21 +77,19 @@ export default function Hero() {
 
                 <div className="hero-image">
                     <div className="hero-image-main">
-                        {hero.heroImage && (
-                            <img
-                                src={hero.heroImage}
-                                alt="Direct Heating engineers"
-                                style={{
-                                    position: 'absolute',
-                                    inset: 0,
-                                    width: '100%',
-                                    height: '100%',
-                                    objectFit: 'contain',
-                                    objectPosition: 'center top',
-                                    zIndex: 0
-                                }}
-                            />
-                        )}
+                        <img
+                            src={hero.heroImage || '/hero.png'}
+                            alt="Direct Heating engineers"
+                            style={{
+                                position: 'absolute',
+                                inset: 0,
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'contain',
+                                objectPosition: 'center top',
+                                zIndex: 0
+                            }}
+                        />
                     </div>
 
                     <div className="floating-card review">
