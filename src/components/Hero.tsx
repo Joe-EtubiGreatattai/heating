@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Phone } from 'lucide-react';
+import Image from 'next/image';
 
 const API = 'https://direct-heating.duckdns.org/api';
 
@@ -54,7 +55,7 @@ export default function Hero() {
                     <div className="hero-badges">
                         <div className="badge">
                             <div className="badge-icon" style={{ background: 'white', overflow: 'hidden', padding: '2px' }}>
-                                <img src="/Gas Safe.png" alt="Gas Safe" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                                <Image src="/Gas Safe.png" alt="Gas Safe" width={36} height={36} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                             </div>
                             <div className="badge-text">Gas Safe <strong>Registered</strong></div>
                         </div>

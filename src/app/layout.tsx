@@ -11,8 +11,11 @@ export const metadata: Metadata = {
     template: "%s | Direct Heating Ltd"
   },
   icons: {
-    icon: "/favicon.png"
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+    shortcut: "/favicon.ico"
   },
+  alternates: { canonical: "/" },
   description: "Gas Safe registered heating engineers in North London. Specialized in boiler installation, servicing, and emergency repairs. Get a free quote today.",
   keywords: ["boiler installation North London", "Gas Safe engineer London", "emergency boiler repair", "heating engineering North London", "boiler servicing", "Vaillant installer", "Worcester Bosch repairs"],
   authors: [{ name: "Direct Heating Ltd" }],
@@ -32,10 +35,10 @@ export const metadata: Metadata = {
     description: "Expert Gas Safe heating engineers providing reliable boiler services and emergency repairs across North London.",
     images: [
       {
-        url: "/Logo tsp white.png",
-        width: 800,
-        height: 600,
-        alt: "Direct Heating Ltd Logo",
+        url: "/hero.png",
+        width: 1200,
+        height: 630,
+        alt: "Direct Heating engineers at work",
       },
     ],
   },
@@ -43,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Direct Heating Ltd | Gas Safe Boiler Installation North London",
     description: "Reliable Gas Safe heating engineers for boiler installation, servicing & repairs. Prompt emergency callouts.",
-    images: ["/Logo tsp white.png"],
+    images: ["/hero.png"],
   },
   robots: {
     index: true,

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 type NavLink = {
     name: string;
@@ -82,13 +83,13 @@ export default function Navbar() {
         <nav className="navbar" style={isNavbarScrolled ? { boxShadow: '0 2px 20px rgba(0,0,0,0.1)' } : { boxShadow: 'none' }}>
             <div className="nav-container">
                 <Link href="/" className="logo">
-                    <img src="/Logo tsp white.png" alt="Direct Heating Ltd" className="logo-img" />
+                    <Image src="/Logo tsp white.png" alt="Direct Heating Ltd" className="logo-img" width={160} height={40} priority />
                 </Link>
                 <ul className={`nav-links${isMobileMenuOpen ? ' mobile-active' : ''}`}>
                     {isMobileMenuOpen && (
                         <li style={{ marginBottom: '0.5rem' }}>
                             <Link href="/" className="logo" onClick={() => setIsMobileMenuOpen(false)}>
-                                <img src="/Logo tsp white.png" alt="Direct Heating Ltd" className="logo-img" />
+                                <Image src="/Logo tsp white.png" alt="Direct Heating Ltd" className="logo-img" width={160} height={40} />
                             </Link>
                         </li>
                     )}

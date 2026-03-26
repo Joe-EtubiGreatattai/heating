@@ -383,15 +383,15 @@ export default function BookingCalendar() {
                                     <form onSubmit={handleBooking}>
                                         <div className="form-group" style={{ marginBottom: '1.2rem' }}>
                                             <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 700, fontSize: '0.9rem' }}>Full Name *</label>
-                                            <input type="text" required value={formData.fullName} onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} style={{ width: '100%', padding: '0.9rem', borderRadius: '12px', border: '2px solid #f0f0f0' }} />
+                                            <input type="text" required value={formData.fullName} onChange={(e) => setFormData({ ...formData, fullName: e.target.value })} style={{ width: '100%', padding: '0.9rem', borderRadius: '12px', border: '2px solid #f0f0f0', fontFamily: 'inherit', fontSize: '1rem', lineHeight: '1.6', color: 'var(--primary)' }} />
                                         </div>
                                         <div className="form-group" style={{ marginBottom: '1.2rem' }}>
                                             <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 700, fontSize: '0.9rem' }}>Email Address *</label>
-                                            <input type="email" required value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} style={{ width: '100%', padding: '0.9rem', borderRadius: '12px', border: '2px solid #f0f0f0' }} />
+                                            <input type="email" required value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} style={{ width: '100%', padding: '0.9rem', borderRadius: '12px', border: '2px solid #f0f0f0', fontFamily: 'inherit', fontSize: '1rem', lineHeight: '1.6', color: 'var(--primary)' }} />
                                         </div>
                                         <div className="form-group" style={{ marginBottom: '2rem' }}>
                                             <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 700, fontSize: '0.9rem' }}>Note</label>
-                                            <textarea value={formData.note} onChange={(e) => setFormData({ ...formData, note: e.target.value })} style={{ width: '100%', padding: '0.9rem', borderRadius: '12px', border: '2px solid #f0f0f0', minHeight: '100px' }}></textarea>
+                                            <textarea value={formData.note} onChange={(e) => setFormData({ ...formData, note: e.target.value })} style={{ width: '100%', padding: '0.9rem', borderRadius: '12px', border: '2px solid #f0f0f0', minHeight: '100px', fontFamily: 'inherit', fontSize: '1rem', lineHeight: '1.6', color: 'var(--primary)' }}></textarea>
                                         </div>
                                         <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', height: '55px' }} disabled={loading}>
                                             {loading ? 'Processing...' : 'Request Booking'}
