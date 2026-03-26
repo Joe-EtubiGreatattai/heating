@@ -11,8 +11,8 @@ export const metadata: Metadata = {
     template: "%s | Direct Heating Ltd"
   },
   icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
+    icon: "/favicon.ico",
+    apple: "/favicon.ico",
     shortcut: "/favicon.ico"
   },
   alternates: { canonical: "/" },

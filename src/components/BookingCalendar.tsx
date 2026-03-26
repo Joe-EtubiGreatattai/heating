@@ -321,10 +321,10 @@ export default function BookingCalendar() {
 
                                 {loading ? (
                                     <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--accent)' }}>Searching slots...</div>
-                                        ) : blockedDay?.blocked ? (
-                                            <div style={{ padding: '1.5rem', textAlign: 'center', color: 'var(--text-gray)' }}>
-                                                We&apos;re not available on this day.
-                                            </div>
+                                ) : blockedDay?.blocked ? (
+                                    <div style={{ padding: '1.5rem', textAlign: 'center', color: 'var(--text-gray)' }}>
+                                        We&apos;re not available on this day.
+                                    </div>
                                 ) : (
                                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: '0.8rem' }}>
                                         {generatedSlots.map(slot => {
