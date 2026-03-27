@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { CheckCircle2, XCircle, AlertCircle, Loader2, CalendarX } from 'lucide-react';
@@ -23,7 +23,7 @@ function formatAmPm(time: string) {
     return `${h % 12 || 12}:${mStr} ${ampm}`;
 }
 
-export default function CancelPage() {
+function CancelPageInner() {
     const searchParams = useSearchParams();
     const token = searchParams.get('token') ?? '';
 
@@ -167,5 +167,18 @@ export default function CancelPage() {
                 @keyframes spin { to { transform: rotate(360deg); } }
             `}</style>
         </div>
+    );
+}
+
+export default function CancelPage() {
+    return (
+        <Suspense fallback={
+            <div style={{ minHeight: '100vh', background: '#fcfcfc', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Loader2 size={48} style={{ color: 'var(--accent)', animation: 'spin 1s linear infinite' }} />
+                <style jsx global>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+            </div>
+        }>
+            <CancelPageInner />
+        </Suspense>
     );
 }
