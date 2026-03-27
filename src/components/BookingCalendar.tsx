@@ -78,6 +78,7 @@ export default function BookingCalendar() {
     const [bookingStatus, setBookingStatus] = useState<'idle' | 'success' | 'error'>('idle');
     const [errorMessage, setErrorMessage] = useState('');
     const [selectedSlot, setSelectedSlot] = useState('');
+    const [confirmedSlot, setConfirmedSlot] = useState('');
     const [now, setNow] = useState(() => new Date());
     const { settings, bookedSlots, loading, blockedDay } = useSyncExternalStore(subscribeToStore, getStoreSnapshot, getStoreSnapshot);
 
@@ -167,6 +168,7 @@ export default function BookingCalendar() {
                 })
             });
             if (res.ok) {
+                setConfirmedSlot(selectedSlot);
                 setBookingStatus('success');
                 setFormData({ fullName: '', email: '', address: '', jobType: '', customerType: '', note: '' });
                 setSelectedSlot('');
@@ -375,7 +377,7 @@ export default function BookingCalendar() {
                                     </div>
                                     <h2 style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>Booking Sent!</h2>
                                     <p style={{ color: 'var(--text-gray)', fontSize: '1rem', lineHeight: '1.6' }}>
-                                        Request received for <strong>{selectedDate}</strong> at <strong>{formatAmPm(selectedSlot)}</strong>.
+                                        Request received for <strong>{selectedDate}</strong> at <strong>{formatAmPm(confirmedSlot)}</strong>.
                                         We&apos;ll email you once confirmed.
                                     </p>
                                     <button onClick={closeForm} className="btn btn-primary" style={{ marginTop: '2.5rem', width: '100%', justifyContent: 'center' }}>Great!</button>

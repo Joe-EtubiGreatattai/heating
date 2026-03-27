@@ -24,7 +24,7 @@ export default function ContactForm() {
             });
 
             if (response.ok) {
-                alert('Thank you for your enquiry! We will contact you within 2 hours.');
+                alert('Thank you for your enquiry! We\'ll be in touch with you soon.');
                 (e.target as HTMLFormElement).reset();
             } else {
                 alert('Something went wrong. Please try again or call us directly.');
