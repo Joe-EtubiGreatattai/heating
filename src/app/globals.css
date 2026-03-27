@@ -345,15 +345,26 @@ body {
 }
 
 .floating-card.review {
-    top: 20%;
-    left: -30px;
+    top: 10%;
+    right: -20px;
+    left: auto;
     max-width: 220px;
 }
 
 .floating-card.stats {
-    bottom: 20%;
-    right: -20px;
+    bottom: 8%;
+    left: -20px;
     text-align: center;
+    padding: 0.75rem 1rem;
+}
+
+.floating-card.stats h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.1rem;
+}
+
+.floating-card.stats p {
+    font-size: 0.75rem;
 }
 
 .stars {
@@ -929,7 +940,7 @@ section {
 .gallery-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
 }
 
@@ -1375,12 +1386,13 @@ footer {
 
     .floating-card.review {
         top: 10%;
-        left: 0;
+        right: 0;
+        left: auto;
     }
 
     .floating-card.stats {
         bottom: 15%;
-        right: 0;
+        left: 0;
     }
 
     .contact-grid {
@@ -1443,8 +1455,7 @@ footer {
     }
 
     .hero-badges {
-        gap: 0.75rem;
-        margin-bottom: 1.5rem;
+        display: none;
     }
 
     .badge {
@@ -1489,7 +1500,7 @@ footer {
 
     .floating-card.stats {
         bottom: 0;
-        right: -10px;
+        left: -10px;
     }
 
     .section-header {
@@ -1784,6 +1795,62 @@ footer {
         font-size: 0.95rem;
         word-break: break-all;
     }
+
+    /* Testimonials mobile */
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+
+    .testimonial-card p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .testimonial-meta h4 {
+        font-size: 1rem;
+    }
+
+    /* Services mobile text */
+    .service-card-modern h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .service-card-modern p {
+        font-size: 0.9rem;
+    }
+
+    /* Pricing grid stacks */
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .pricing-header h3 {
+        font-size: 1.3rem;
+    }
+
+    /* Segment card mobile */
+    .segment-header h3 {
+        font-size: 1.25rem;
+    }
+
+    .segment-features li {
+        font-size: 0.9rem;
+    }
+
+    /* Section padding reductions */
+    .pricing-section {
+        padding: 4rem 0 !important;
+    }
+
+    .testimonials {
+        padding: 4rem 0 !important;
+    }
+
+    .gallery-section {
+        padding: 4rem 0 !important;
+    }
 }
 
 /* Animations */
@@ -1933,5 +2000,125 @@ body {
 @media (max-width: 768px) {
     .faq-question h3 {
         font-size: 1.1rem;
+    }
+}
+
+/* Extra small screens (phones < 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 0.875rem;
+    }
+
+    /* Hero further reduced */
+    .hero-container {
+        padding: 5.5rem 0.875rem 2rem;
+    }
+
+    .hero-content h1 {
+        font-size: 1.75rem;
+        letter-spacing: -0.5px;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .hero-cta-group .btn {
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    .floating-card.stats {
+        display: none;
+    }
+
+    /* Section headers */
+    .section-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .section-header p {
+        font-size: 0.875rem;
+    }
+
+    /* Booking section */
+    .booking-section {
+        padding: 3rem 0 !important;
+    }
+
+    /* Services */
+    .service-card-modern {
+        padding: 1.5rem 1.25rem;
+    }
+
+    /* Pricing */
+    .pricing-card {
+        padding: 1.5rem;
+    }
+
+    .price {
+        font-size: 2rem;
+    }
+
+    /* Testimonials */
+    .testimonial-card {
+        padding: 1.25rem;
+    }
+
+    /* Emergency CTA */
+    .emergency-cta h2 {
+        font-size: 1.4rem;
+    }
+
+    .emergency-phone {
+        font-size: 1.5rem;
+    }
+
+    /* Contact */
+    .contact-form {
+        padding: 1.25rem;
+    }
+
+    /* FAQ */
+    .faq-item {
+        padding: 1rem;
+    }
+
+    .faq-question h3 {
+        font-size: 0.95rem;
+    }
+
+    /* Footer */
+    footer {
+        padding: 2.5rem 0 1.5rem;
+    }
+
+    .footer-links h4 {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Segments */
+    .segment-card {
+        padding: 1.25rem;
+    }
+
+    .segment-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.4rem;
+    }
+
+    .segment-header h3 {
+        font-size: 1.15rem;
+    }
+
+    /* Gallery */
+    .gallery-slide.is-active {
+        height: 220px;
     }
 }

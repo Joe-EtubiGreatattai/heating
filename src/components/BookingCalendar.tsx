@@ -62,6 +62,14 @@ const isBookingSettings = (value: unknown): value is BookingSettings => {
         && unavailableDatesOk;
 };
 
+function formatAmPm(time: string): string {
+    const [hStr, mStr] = time.split(':');
+    const h = parseInt(hStr, 10);
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    const displayH = h % 12 || 12;
+    return `${displayH}:${mStr} ${ampm}`;
+}
+
 export default function BookingCalendar() {
     // Calendar State
     const [viewDate, setViewDate] = useState(new Date());
@@ -76,6 +84,9 @@ export default function BookingCalendar() {
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
+        address: '',
+        jobType: '',
+        customerType: '',
         note: ''
     });
 
@@ -157,7 +168,7 @@ export default function BookingCalendar() {
             });
             if (res.ok) {
                 setBookingStatus('success');
-                setFormData({ fullName: '', email: '', note: '' });
+                setFormData({ fullName: '', email: '', address: '', jobType: '', customerType: '', note: '' });
                 setSelectedSlot('');
                 if (selectedDate) {
                     try {
@@ -340,7 +351,7 @@ export default function BookingCalendar() {
                                                     }}
                                                     className={`slot-btn ${isBooked ? 'booked' : ''} ${pastSlot ? 'past' : ''}`}
                                                 >
-                                                    {slot}
+                                                    {formatAmPm(slot)}
                                                 </button>
                                             );
                                         })}
@@ -364,7 +375,7 @@ export default function BookingCalendar() {
                                     </div>
                                     <h2 style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>Booking Sent!</h2>
                                     <p style={{ color: 'var(--text-gray)', fontSize: '1rem', lineHeight: '1.6' }}>
-                                        Request received for <strong>{selectedDate}</strong> at <strong>{selectedSlot}</strong>.
+                                        Request received for <strong>{selectedDate}</strong> at <strong>{formatAmPm(selectedSlot)}</strong>.
                                         We&apos;ll email you once confirmed.
                                     </p>
                                     <button onClick={closeForm} className="btn btn-primary" style={{ marginTop: '2.5rem', width: '100%', justifyContent: 'center' }}>Great!</button>
@@ -372,7 +383,7 @@ export default function BookingCalendar() {
                             ) : (
                                 <>
                                     <h3 style={{ fontSize: '1.6rem', fontWeight: 800, marginBottom: '0.5rem' }}>Complete Booking</h3>
-                                    {selectedDate && <p style={{ marginBottom: '2rem', color: 'var(--text-gray)', fontSize: '0.9rem' }}>{new Date(selectedDate).toLocaleDateString()} @ {selectedSlot}</p>}
+                                    {selectedDate && <p style={{ marginBottom: '2rem', color: 'var(--text-gray)', fontSize: '0.9rem' }}>{new Date(selectedDate).toLocaleDateString()} @ {formatAmPm(selectedSlot)}</p>}
 
                                     {bookingStatus === 'error' && (
                                         <div style={{ background: '#fff5f5', color: '#e53e3e', padding: '1rem', borderRadius: '12px', marginBottom: '1.5rem', fontSize: '0.9rem' }}>
@@ -388,6 +399,34 @@ export default function BookingCalendar() {
                                         <div className="form-group" style={{ marginBottom: '1.2rem' }}>
                                             <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 700, fontSize: '0.9rem' }}>Email Address *</label>
                                             <input type="email" required value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} style={{ width: '100%', padding: '0.9rem', borderRadius: '12px', border: '2px solid #f0f0f0', fontFamily: 'inherit', fontSize: '1rem', lineHeight: '1.6', color: 'var(--primary)' }} />
+                                        </div>
+                                        <div className="form-group" style={{ marginBottom: '1.2rem' }}>
+                                            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 700, fontSize: '0.9rem' }}>Address *</label>
+                                            <input type="text" required value={formData.address} onChange={(e) => setFormData({ ...formData, address: e.target.value })} placeholder="e.g. 12 Example Street, London, N1 2AB" style={{ width: '100%', padding: '0.9rem', borderRadius: '12px', border: '2px solid #f0f0f0', fontFamily: 'inherit', fontSize: '1rem', lineHeight: '1.6', color: 'var(--primary)' }} />
+                                        </div>
+                                        <div className="form-group" style={{ marginBottom: '1.2rem' }}>
+                                            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 700, fontSize: '0.9rem' }}>Job Type *</label>
+                                            <select required value={formData.jobType} onChange={(e) => setFormData({ ...formData, jobType: e.target.value })} style={{ width: '100%', padding: '0.9rem', borderRadius: '12px', border: '2px solid #f0f0f0', fontFamily: 'inherit', fontSize: '1rem', lineHeight: '1.6', color: 'var(--primary)', background: 'white' }}>
+                                                <option value="">Select job type...</option>
+                                                <option value="Boiler Installation">Boiler Installation</option>
+                                                <option value="Boiler Repair">Boiler Repair</option>
+                                                <option value="Boiler Service">Boiler Service</option>
+                                                <option value="Emergency Callout">Emergency Callout</option>
+                                                <option value="Plumbing">Plumbing</option>
+                                                <option value="Underfloor Heating">Underfloor Heating</option>
+                                                <option value="Hot Water Cylinder">Hot Water Cylinder</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                        <div className="form-group" style={{ marginBottom: '1.2rem' }}>
+                                            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 700, fontSize: '0.9rem' }}>Customer Type *</label>
+                                            <select required value={formData.customerType} onChange={(e) => setFormData({ ...formData, customerType: e.target.value })} style={{ width: '100%', padding: '0.9rem', borderRadius: '12px', border: '2px solid #f0f0f0', fontFamily: 'inherit', fontSize: '1rem', lineHeight: '1.6', color: 'var(--primary)', background: 'white' }}>
+                                                <option value="">Select customer type...</option>
+                                                <option value="domestic">Domestic / Homeowner</option>
+                                                <option value="landlord">Landlord</option>
+                                                <option value="commercial">Commercial Business</option>
+                                                <option value="property">Property Management</option>
+                                            </select>
                                         </div>
                                         <div className="form-group" style={{ marginBottom: '2rem' }}>
                                             <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 700, fontSize: '0.9rem' }}>Note</label>
@@ -407,10 +446,22 @@ export default function BookingCalendar() {
             <style jsx>{`
                 @media (max-width: 768px) {
                     .booking-section { padding: 4rem 0 !important; }
-                    .booking-header h2 { font-size: 2.2rem !important; }
-                    .booking-grid { grid-template-columns: 1fr !important; }
+                    .booking-header { margin-bottom: 2rem !important; }
+                    .booking-header h2 { font-size: 1.9rem !important; }
+                    .booking-header p { font-size: 1rem !important; }
+                    .booking-grid { grid-template-columns: 1fr !important; gap: 1.25rem !important; }
                     .calendar-card { padding: 1.5rem !important; border-radius: 25px !important; }
-                    .no-selection { height: 250px !important; border-radius: 25px !important; }
+                    .no-selection { height: 220px !important; border-radius: 25px !important; }
+                    .modal-content { padding: 1.75rem !important; border-radius: 24px !important; }
+                    .slots-wrapper { min-height: auto !important; }
+                }
+                @media (max-width: 480px) {
+                    .booking-header h2 { font-size: 1.6rem !important; }
+                    .booking-header p { font-size: 0.9rem !important; }
+                    .calendar-card { padding: 1.25rem !important; border-radius: 20px !important; }
+                    .modal-content { padding: 1.25rem !important; border-radius: 20px !important; }
+                    .slot-btn { padding: 0.9rem 0.5rem !important; font-size: 0.95rem !important; }
+                    .day-btn { font-size: 0.85rem !important; }
                 }
 
                 .cal-btn {

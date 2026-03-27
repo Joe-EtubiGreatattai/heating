@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useRef } from 'react';
 
 const API = 'https://direct-heating.duckdns.org/api';
 const MEDIA_ORIGIN = new URL(API).origin;
@@ -20,6 +20,7 @@ const FALLBACK_SLIDES: Slide[] = [
 export default function Gallery() {
     const [slides, setSlides] = useState<Slide[]>([]);
     const [activeIndex, setActiveIndex] = useState(0);
+    const touchStartX = useRef<number | null>(null);
 
     const normalizeImageSrc = (src: string) => {
         if (!src) return src;
@@ -57,6 +58,17 @@ export default function Gallery() {
     const goPrev = () => setActiveIndex(prevIndex);
     const goNext = () => setActiveIndex(nextIndex);
 
+    const handleTouchStart = (e: React.TouchEvent) => {
+        touchStartX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = (e: React.TouchEvent) => {
+        if (touchStartX.current === null) return;
+        const delta = e.changedTouches[0].clientX - touchStartX.current;
+        if (Math.abs(delta) > 40) delta < 0 ? goNext() : goPrev();
+        touchStartX.current = null;
+    };
+
     if (slides.length === 0) return null;
 
     return (
@@ -68,7 +80,7 @@ export default function Gallery() {
                     <p>A glimpse of recent installations, repairs and plumbing projects completed by Direct Heating.</p>
                 </div>
 
-                <div className="gallery-shell" aria-label="Project photo gallery">
+                <div className="gallery-shell" aria-label="Project photo gallery" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
                     <button type="button" className="gallery-nav gallery-nav-left" onClick={goPrev} aria-label="Previous photo">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />

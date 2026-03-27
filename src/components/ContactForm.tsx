@@ -141,9 +141,6 @@ export default function ContactForm() {
                             Send Enquiry
                         </button>
 
-                        <p style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.85rem', color: 'var(--text-gray)' }}>
-                            We typically respond within 2 hours during business hours.
-                        </p>
                     </form>
                 </div>
             </div>
