@@ -35,6 +35,7 @@ const DEFAULT: HeroData = {
 
 export default function Hero() {
     const [hero, setHero] = useState<HeroData>(DEFAULT);
+    const hasStats = Boolean(hero.statNumber?.trim()) && Boolean(hero.statLabel?.trim());
 
     useEffect(() => {
         fetch(`${API}/cms/hero`)
@@ -98,10 +99,12 @@ export default function Hero() {
                         <strong style={{ display: 'block', marginTop: '0.5rem', color: 'var(--primary)', fontSize: '0.85rem' }}>- {hero.reviewAuthor}</strong>
                     </div>
 
-                    <div className="floating-card stats">
-                        <h4>{hero.statNumber}</h4>
-                        <p>{hero.statLabel}</p>
-                    </div>
+                    {hasStats && (
+                        <div className="floating-card stats">
+                            <h4>{hero.statNumber}</h4>
+                            <p>{hero.statLabel}</p>
+                        </div>
+                    )}
                 </div>
             </div>
         </section>

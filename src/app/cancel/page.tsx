@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback, Suspense } from 'react';
+import { useEffect, useSyncExternalStore, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { CheckCircle2, XCircle, AlertCircle, Loader2, CalendarX } from 'lucide-react';
@@ -16,6 +16,71 @@ type BookingInfo = {
     status: string;
 };
 
+type CancelPhase = 'loading' | 'ready' | 'confirming' | 'done' | 'error';
+
+type CancelStoreState = {
+    token: string;
+    booking: BookingInfo | null;
+    phase: CancelPhase;
+    errorMsg: string;
+    loadingToken: string | null;
+};
+
+let cancelStoreState: CancelStoreState = { token: '', booking: null, phase: 'loading', errorMsg: '', loadingToken: null };
+const cancelStoreListeners = new Set<() => void>();
+
+const getCancelStoreSnapshot = () => cancelStoreState;
+
+const subscribeToCancelStore = (listener: () => void) => {
+    cancelStoreListeners.add(listener);
+    return () => cancelStoreListeners.delete(listener);
+};
+
+const updateCancelStore = (partial: Partial<CancelStoreState>) => {
+    cancelStoreState = { ...cancelStoreState, ...partial };
+    cancelStoreListeners.forEach((listener) => listener());
+};
+
+const ensureCancelBookingLoaded = (token: string) => {
+    if (!token) {
+        if (cancelStoreState.token !== '' || cancelStoreState.phase !== 'error') {
+            updateCancelStore({
+                token: '',
+                booking: null,
+                phase: 'error',
+                errorMsg: 'No cancellation token provided. Please use the link from your confirmation email.',
+                loadingToken: null
+            });
+        }
+        return;
+    }
+
+    const isSameToken = cancelStoreState.token === token;
+    const isLoading = cancelStoreState.loadingToken === token;
+    const isFinished = isSameToken && (cancelStoreState.phase === 'ready' || cancelStoreState.phase === 'done' || cancelStoreState.phase === 'error');
+    if (isLoading || isFinished) return;
+
+    updateCancelStore({ token, booking: null, phase: 'loading', errorMsg: '', loadingToken: token });
+
+    void (async () => {
+        try {
+            const res = await fetch(`${API}/bookings/cancel/${encodeURIComponent(token)}`);
+            const data = await res.json();
+            if (cancelStoreState.loadingToken !== token) return;
+            if (!res.ok) {
+                updateCancelStore({ phase: 'error', errorMsg: data?.error || 'Could not find your booking.' });
+                return;
+            }
+            updateCancelStore({ booking: data as BookingInfo, phase: (data as BookingInfo).status === 'cancelled' ? 'done' : 'ready' });
+        } catch {
+            if (cancelStoreState.loadingToken !== token) return;
+            updateCancelStore({ phase: 'error', errorMsg: 'Could not connect to the server. Please try again later.' });
+        } finally {
+            if (cancelStoreState.loadingToken === token) updateCancelStore({ loadingToken: null });
+        }
+    })();
+};
+
 function formatAmPm(time: string) {
     const [hStr, mStr] = time.split(':');
     const h = parseInt(hStr, 10);
@@ -27,48 +92,29 @@ function CancelPageInner() {
     const searchParams = useSearchParams();
     const token = searchParams.get('token') ?? '';
 
-    const [booking, setBooking] = useState<BookingInfo | null>(null);
-    const [phase, setPhase] = useState<'loading' | 'ready' | 'confirming' | 'done' | 'error'>('loading');
-    const [errorMsg, setErrorMsg] = useState('');
+    const snapshot = useSyncExternalStore(subscribeToCancelStore, getCancelStoreSnapshot, getCancelStoreSnapshot);
 
-    const loadBooking = useCallback(async () => {
-        if (!token) {
-            setPhase('error');
-            setErrorMsg('No cancellation token provided. Please use the link from your confirmation email.');
-            return;
-        }
-        try {
-            const res = await fetch(`${API}/bookings/cancel/${encodeURIComponent(token)}`);
-            const data = await res.json();
-            if (!res.ok) {
-                setPhase('error');
-                setErrorMsg(data.error || 'Could not find your booking.');
-                return;
-            }
-            setBooking(data as BookingInfo);
-            setPhase(data.status === 'cancelled' ? 'done' : 'ready');
-        } catch {
-            setPhase('error');
-            setErrorMsg('Could not connect to the server. Please try again later.');
-        }
+    useEffect(() => {
+        ensureCancelBookingLoaded(token);
     }, [token]);
 
-    useEffect(() => { void loadBooking(); }, [loadBooking]);
+    const booking = snapshot.token === token ? snapshot.booking : null;
+    const phase: CancelPhase = snapshot.token === token ? snapshot.phase : (token ? 'loading' : 'error');
+    const errorMsg = snapshot.token === token ? snapshot.errorMsg : (token ? '' : 'No cancellation token provided. Please use the link from your confirmation email.');
 
     const handleCancel = async () => {
-        setPhase('confirming');
+        if (!token) return;
+        updateCancelStore({ token, phase: 'confirming', errorMsg: '' });
         try {
             const res = await fetch(`${API}/bookings/cancel/${encodeURIComponent(token)}`, { method: 'POST' });
             const data = await res.json();
             if (!res.ok) {
-                setPhase('ready');
-                setErrorMsg(data.error || 'Cancellation failed. Please try again.');
+                updateCancelStore({ phase: 'ready', errorMsg: data?.error || 'Cancellation failed. Please try again.' });
                 return;
             }
-            setPhase('done');
+            updateCancelStore({ phase: 'done' });
         } catch {
-            setPhase('ready');
-            setErrorMsg('Could not connect to the server. Please try again later.');
+            updateCancelStore({ phase: 'ready', errorMsg: 'Could not connect to the server. Please try again later.' });
         }
     };
 
