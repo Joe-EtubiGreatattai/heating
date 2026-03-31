@@ -19,7 +19,7 @@ interface PricingPlan {
 
 const FALLBACK: PricingPlan[] = [
     { _id: '1', tab: 'domestic', name: 'Boiler Service', price: '£80', priceUnit: '/service', featured: false, features: ['Full boiler inspection', 'Gas pressure check', 'Flue & combustion analysis', 'Gas Safety Certificate', '12-month service record'], ctaText: 'Book Service', ctaLink: '/contact' },
-    { _id: '2', tab: 'domestic', name: 'Boiler Quote', price: 'Free quotes available', priceUnit: '', featured: true, features: ['Full installation', 'Old boiler removal', 'New boiler & fittings', 'System flush & cleanse', '10-year warranty options', 'Building regs notification'], ctaText: 'Get Quote', ctaLink: '/contact' },
+    { _id: '2', tab: 'domestic', name: 'Boiler Quote', price: 'Free quotes available', priceUnit: '', featured: true, features: ['Full installation', 'Old boiler removal', 'New boiler & fittings', 'System flush & cleanse', '10-year warranty options', 'Building regs notification'], ctaText: 'Get a Quote', ctaLink: '/contact' },
     { _id: '3', tab: 'domestic', name: 'Hourly Rate', price: '£120', priceUnit: '/hour', featured: false, features: ['Boiler faults', 'Leak repairs', 'Plumbing issues', 'Heating system issues', 'Minimum 1 hour charge'], ctaText: 'Book Engineer', ctaLink: '/contact' },
     { _id: '4', tab: 'commercial', name: 'Commercial Rate', price: '£140', priceUnit: '/hour', featured: false, features: ['Plus travel time', 'Large-scale systems', 'Detailed invoicing'], ctaText: 'Enquire Now', ctaLink: '/contact' },
     { _id: '5', tab: 'commercial', name: 'Property Management', price: 'Competitive rates', priceUnit: '', featured: false, features: ['Agency rates', 'Multiple properties', 'Priority booking', 'Direct tenant liaison', 'Monthly billing available'], ctaText: 'Partner With Us', ctaLink: '/contact' },
@@ -33,8 +33,15 @@ export default function Pricing() {
         fetch(`${API}/cms/pricing`)
             .then(r => r.json())
             .then((data: PricingPlan[]) => {
-                if (Array.isArray(data) && data.length > 0) setPlans(data);
-                else setPlans(FALLBACK);
+                if (Array.isArray(data) && data.length > 0) {
+                    const transformed = data.map(p => ({
+                        ...p,
+                        ctaText: p.ctaText === 'Get Quote' ? 'Get a Quote' : p.ctaText
+                    }));
+                    setPlans(transformed);
+                } else {
+                    setPlans(FALLBACK);
+                }
             })
             .catch(() => setPlans(FALLBACK));
     }, []);

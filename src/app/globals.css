@@ -196,7 +196,7 @@ body {
 .hero-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 8rem 2rem 4rem;
+    padding: 4.5rem 2rem 4rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;

@@ -4,7 +4,7 @@ import Services from '@/components/Services';
 
 export const metadata = {
     title: "Domestic Heating & Plumbing Solutions North London",
-    description: "Professional heating and plumbing services for homeowners and tenants across North London. Boiler installations, servicing, and emergency repairs.",
+    description: "Professional heating and plumbing services for homeowners and Landlord across North London. Boiler installations, servicing, and emergency repairs.",
 };
 
 async function getSections() {
@@ -46,15 +46,15 @@ export default async function HouseholdPage() {
         householdIntro: (
             <>
                 <div className="section-header">
-                    <h1>Domestic Heating Solutions</h1>
+                    <h1>Domestic Heating & Plumbing Solutions</h1>
                     <p>Reliable heating and plumbing services tailored for your home.</p>
                 </div>
 
                 <div className="segments-grid" style={{ marginBottom: '6rem' }}>
                     <div className="segment-card" style={{ cursor: 'default', background: 'var(--light-gray)', maxWidth: '800px', margin: '0 auto' }}>
-                        <div className="segment-header">
-                            <span style={{ fontSize: '2.5rem' }}>🏠</span>
-                            <h3>For Homeowners & Tenants</h3>
+                        <div style={{ marginBottom: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                            <div style={{ background: '#fcfcfc', padding: '0.8rem', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>🏠</div>
+                            <h3>For Homeowners & Landlord</h3>
                         </div>
                         <p>Keep your family warm and safe with our reliable domestic services. From high-efficiency boiler installs to annual safety checks.</p>
                         <div className="segment-inner-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginTop: '2rem' }}>

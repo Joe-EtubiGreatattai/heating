@@ -13,6 +13,8 @@ type BookingSettings = {
     openingTime: string;
     closingTime: string;
     slotDuration: number;
+    useFixedSlots?: boolean;
+    fixedSlots?: { time: string; label: string }[];
     workingDays?: number[];
     unavailableDates?: string[];
 };
@@ -55,11 +57,13 @@ const isBookingSettings = (value: unknown): value is BookingSettings => {
     const v = value as Record<string, unknown>;
     const workingDaysOk = !('workingDays' in v) || Array.isArray(v.workingDays);
     const unavailableDatesOk = !('unavailableDates' in v) || Array.isArray(v.unavailableDates);
+    const fixedSlotsOk = !('fixedSlots' in v) || Array.isArray(v.fixedSlots);
     return typeof v.openingTime === 'string'
         && typeof v.closingTime === 'string'
         && typeof v.slotDuration === 'number'
         && workingDaysOk
-        && unavailableDatesOk;
+        && unavailableDatesOk
+        && fixedSlotsOk;
 };
 
 function formatAmPm(time: string): string {
@@ -141,6 +145,9 @@ export default function BookingCalendar() {
     }, [selectedDate]);
 
     const generatedSlots = useMemo(() => {
+        if (settings.useFixedSlots && Array.isArray(settings.fixedSlots) && settings.fixedSlots.length > 0) {
+            return settings.fixedSlots;
+        }
         const { openingTime, closingTime, slotDuration } = settings;
         const start = parseInt(openingTime.split(':')[0]) * 60 + parseInt(openingTime.split(':')[1]);
         const end = parseInt(closingTime.split(':')[0]) * 60 + parseInt(closingTime.split(':')[1]);
@@ -148,7 +155,7 @@ export default function BookingCalendar() {
         for (let time = start; time < end; time += slotDuration) {
             const h = Math.floor(time / 60).toString().padStart(2, '0');
             const m = (time % 60).toString().padStart(2, '0');
-            newSlots.push(`${h}:${m}`);
+            newSlots.push({ time: `${h}:${m}`, label: '' });
         }
         return newSlots;
     }, [settings]);
@@ -341,19 +348,21 @@ export default function BookingCalendar() {
                                 ) : (
                                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: '0.8rem' }}>
                                         {generatedSlots.map(slot => {
-                                            const isBooked = bookedSlots.includes(slot);
-                                            const pastSlot = selectedDate ? isPastSlot(selectedDate, slot) : false;
+                                            const isBooked = bookedSlots.includes(slot.time);
+                                            const pastSlot = selectedDate ? isPastSlot(selectedDate, slot.time) : false;
                                             return (
                                                 <button
-                                                    key={slot}
+                                                    key={slot.time}
                                                     disabled={isBooked || pastSlot}
                                                     onClick={() => {
-                                                        setSelectedSlot(slot);
+                                                        setSelectedSlot(slot.time);
                                                         setShowForm(true);
                                                     }}
                                                     className={`slot-btn ${isBooked ? 'booked' : ''} ${pastSlot ? 'past' : ''}`}
+                                                    style={slot.label ? { display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', height: 'auto', minHeight: '80px', justifyContent: 'center' } : {}}
                                                 >
-                                                    {formatAmPm(slot)}
+                                                    <span style={{ fontSize: slot.label ? '0.9rem' : '1.1rem', fontWeight: 800 }}>{formatAmPm(slot.time)}</span>
+                                                    {slot.label && <span style={{ fontSize: '0.75rem', opacity: 0.7, marginTop: '4px', fontWeight: 600 }}>{slot.label}</span>}
                                                 </button>
                                             );
                                         })}

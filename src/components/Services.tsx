@@ -27,11 +27,11 @@ const ICON_SVGs: Record<string, ReactElement> = {
 };
 
 const FALLBACK: ServiceItem[] = [
-    { _id: '1', title: 'Boiler Quote', description: 'Expert installation of Vaillant, Glow-worm, Worcester Bosch and other leading brands. 10-year warranties available.', link: '/contact', cta: 'Get Quote', label: 'Premium', isExternal: false, iconName: 'star' },
+    { _id: '1', title: 'Boiler Quote', description: 'Expert installation of Vaillant, Glow-worm, Worcester Bosch and other leading brands. 10-year warranties available.', link: '/contact', cta: 'Get a Quote', label: 'Premium', isExternal: false, iconName: 'star' },
     { _id: '2', title: 'Boiler Servicing', description: 'Annual servicing to keep your boiler running efficiently and safely. Gas Safety Checks included. Prevent breakdowns.', link: '/contact', cta: 'Book Service', label: 'Essential', isExternal: false, iconName: 'wrench' },
     { _id: '3', title: 'Emergency Repairs', description: 'Emergency callout for boiler breakdowns. Fast response times. We diagnose and fix problems quickly.', link: 'tel:02046008746', cta: 'Call Now', label: 'Emergency', isExternal: true, iconName: 'zap' },
     { _id: '4', title: 'Underfloor Heating', description: 'Installation and servicing of energy-efficient underfloor heating solutions for modern homes.', link: '/contact', cta: 'Learn More', label: '', isExternal: false, iconName: 'circle' },
-    { _id: '5', title: 'Hot Water Cylinders', description: 'Installation and repair of unvented/vented cylinders. High-quality brands supplied and fitted.', link: '/contact', cta: 'Get Quote', label: '', isExternal: false, iconName: 'layers' },
+    { _id: '5', title: 'Hot Water Cylinders', description: 'Installation and repair of unvented/vented cylinders. High-quality brands supplied and fitted.', link: '/contact', cta: 'Get a Quote', label: '', isExternal: false, iconName: 'layers' },
     { _id: '6', title: 'Plumbing Services', description: 'From leak repairs to new installations, our Gas Safe engineers handle all your domestic plumbing needs.', link: '/contact', cta: 'Book Now', label: '', isExternal: false, iconName: 'activity' },
 ];
 
