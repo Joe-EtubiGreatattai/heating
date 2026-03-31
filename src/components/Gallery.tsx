@@ -94,17 +94,6 @@ export default function Gallery() {
 
                         <div className="gallery-slide is-active">
                             <img className="gallery-image" src={slides[activeIndex].src} alt={slides[activeIndex].alt} />
-
-                            <div className="gallery-brand">
-                                <img className="gallery-brand-logo" src="/Logo tsp white.png" alt="Direct Heating" />
-                                <a className="gallery-brand-phone" href="tel:02046008746">
-                                    0204 600 8746
-                                </a>
-                            </div>
-
-                            <div className="gallery-caption">
-                                <div className="gallery-caption-text">{slides[activeIndex].caption}</div>
-                            </div>
                         </div>
 
                         <div className="gallery-slide is-side" aria-hidden="true">
