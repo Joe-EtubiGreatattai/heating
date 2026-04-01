@@ -361,7 +361,7 @@ export default function BookingCalendar() {
                                                     className={`slot-btn ${isBooked ? 'booked' : ''} ${pastSlot ? 'past' : ''}`}
                                                     style={slot.label ? { display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', height: 'auto', minHeight: '80px', justifyContent: 'center' } : {}}
                                                 >
-                                                    <span style={{ fontSize: slot.label ? '0.9rem' : '1.1rem', fontWeight: 800 }}>{formatAmPm(slot.time)}</span>
+                                                    <span style={{ fontSize: slot.label ? '0.9rem' : '1.1rem', fontWeight: 800 }}>From {formatAmPm(slot.time)}</span>
                                                     {slot.label && <span style={{ fontSize: '0.75rem', opacity: 0.7, marginTop: '4px', fontWeight: 600 }}>{slot.label}</span>}
                                                 </button>
                                             );
